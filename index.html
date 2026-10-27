@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafaRaha — Maquette de démonstration</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --teal:#0F766E; --teal-dark:#115E59; --teal-soft:#CCFBF1; --teal-tint:#F0FDFA;
+  --cta:#C2410C; --cta-dark:#9A3412; --booked:#9A3412;
+  --sand:#FAF7F2; --ink:#0F172A; --muted:#57534E; --line:#E7E5E4; --field:#D6D3D1;
+  --card:#FFFFFF; --photo:#E7E2D9; --wa:#25D366; --wa-ink:#052E16;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--sand);color:var(--ink);font-family:'Readex Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+a{color:var(--teal)}
+button,input,select{font:inherit;color:inherit}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid #0EA5E9;outline-offset:2px}
+
+/* Bandeau démo */
+.demo{background:var(--ink);color:#F5F5F4;font-size:13px;text-align:center;padding:8px 16px}
+
+/* En-tête */
+.top{background:var(--sand);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
+.logo{font-size:24px;font-weight:700;letter-spacing:-.5px;color:var(--teal);text-decoration:none}
+.logo span{color:var(--cta)}
+.nav{display:flex;gap:4px;margin-left:auto;align-items:center}
+.nav a{min-height:44px;display:flex;align-items:center;padding:0 12px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:15px}
+.nav a.on{color:var(--teal);font-weight:600}
+.nav a.btn-out{border:1px solid var(--teal);color:var(--teal);font-weight:500}
+@media (max-width:640px){.nav .hide-s{display:none}}
+
+/* Boutons et champs */
+.btn{min-height:52px;border:none;border-radius:14px;background:var(--cta);color:#fff;font-size:16px;font-weight:600;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--cta-dark)}
+.btn.teal{background:var(--teal)}.btn.teal:hover{background:var(--teal-dark)}
+.btn.ghost{background:#fff;color:var(--teal);border:1px solid var(--teal)}
+.btn.ghost:hover{background:var(--teal-tint)}
+.btn.plain{background:#fff;color:var(--ink);border:1px solid var(--field)}
+.field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#44403C}
+.field select,.field input{height:50px;border:1px solid var(--field);border-radius:12px;padding:0 12px;font-size:16px;color:var(--ink);background:#fff;width:100%}
+.check{min-height:44px;display:flex;align-items:center;gap:12px;font-size:15px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--teal);flex-shrink:0}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--field);background:#fff;display:inline-flex;align-items:center;font-size:14px;cursor:pointer;text-decoration:none;color:var(--ink);white-space:nowrap}
+.chip.on{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:600}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal-dark);font-size:12px;font-weight:600}
+.card{background:var(--card);border-radius:var(--r)}
+
+/* Accueil */
+.hero{padding:40px 0 8px}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.08;font-weight:700;max-width:760px}
+.hero p{margin-top:14px;font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:620px}
+.search{margin-top:24px;background:#fff;border-radius:20px;box-shadow:0 8px 30px rgba(15,23,42,.08);padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
+.search .btn{width:100%}
+.section{padding-top:36px}
+.section h2{font-size:20px;font-weight:600;margin-bottom:14px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.trust .card{padding:20px;display:flex;gap:14px;align-items:flex-start}
+.ico{width:44px;height:44px;border-radius:12px;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trust h3{font-size:16px;font-weight:600}
+.trust p{font-size:14px;color:var(--muted);margin-top:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.car{display:block;background:#fff;border-radius:18px;overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:0 2px 10px rgba(15,23,42,.06);transition:transform .15s,box-shadow .15s}
+.car:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,23,42,.1)}
+.photo{background:var(--photo);color:#78716C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;font-size:12px}
+.car .photo{height:180px}
+.car .photo .badge{position:absolute;top:12px;left:12px;background:#fff;color:var(--teal)}
+.car .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
+.car .name{font-size:16px;font-weight:600}
+.car .specs{font-size:13px;color:var(--muted)}
+.car .extra{font-size:13px;color:#44403C}
+.car .foot{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:6px}
+.car .owner{font-size:12px;color:var(--muted)}
+.price b{font-size:18px;color:var(--teal)}.price small{font-size:12px;color:var(--muted)}
+.band{margin-top:44px;background:var(--teal);color:#fff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.band h2{font-size:26px;font-weight:700}
+.band p{color:var(--teal-soft);margin-top:8px;max-width:620px}
+.band .btn{background:#fff;color:var(--teal)}
+footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px 24px}
+
+/* Résultats */
+.bar{padding:16px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.bar h1{font-size:clamp(18px,2.4vw,24px);font-weight:600}
+.results{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;padding-bottom:40px}
+.filters{flex:1 1 260px;max-width:100%;padding:20px;display:flex;flex-direction:column;gap:16px}
+.filters h2{font-size:17px;font-weight:600}
+.filters fieldset{border:none;margin:0;padding:0}
+.filters legend{font-size:13px;font-weight:500;color:#44403C;margin-bottom:4px}
+.list{flex:999 1 560px;min-width:0}
+.open-filters{display:none}
+.empty{padding:24px;color:var(--muted)}
+@media (max-width:860px){
+  .filters{display:none;position:fixed;inset:auto 0 0 0;z-index:40;border-radius:24px 24px 0 0;max-height:85vh;overflow-y:auto;box-shadow:0 -10px 40px rgba(15,23,42,.2)}
+  .filters.open{display:flex}
+  .open-filters{display:inline-flex}
+  .veil{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:39}
+}
+
+/* Fiche */
+.back{min-height:44px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);font-size:15px;margin:12px 0}
+.detail{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;padding-bottom:120px}
+.detail .main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.detail aside{flex:1 1 300px}
+.gallery{height:clamp(240px,40vw,420px);border-radius:20px;overflow:hidden}
+.gallery .nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:none;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.gallery .prev{left:12px}.gallery .next{right:12px}
+.gallery .count{position:absolute;bottom:12px;right:12px;background:rgba(15,23,42,.75);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px}
+.title h1{font-size:clamp(22px,3vw,30px);font-weight:700;margin-top:6px}
+.title .sub{color:var(--muted);font-size:15px}
+.owner-card{padding:14px;display:flex;align-items:center;gap:12px}
+.avatar{width:48px;height:48px;border-radius:999px;background:var(--teal);color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.specgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.specgrid div{background:#fff;border-radius:12px;padding:10px 12px}
+.specgrid small{display:block;font-size:12px;color:var(--muted)}
+.specgrid span{font-size:14px;font-weight:500}
+.rows{padding:4px 16px}
+.rows div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #F5F5F4;font-size:14px}
+.rows div:last-child{border-bottom:none}
+.rows span:first-child{color:var(--muted)}
+.rows span:last-child{font-weight:500;text-align:right}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px}
+.cal{padding:14px}
+.cal .head,.cal .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal .head span{text-align:center;font-size:11px;color:var(--muted);margin-bottom:6px}
+.day{height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;border:1px solid transparent;background:none}
+.day.booked{color:#A8A29E;text-decoration:line-through;background:#F5F5F4}
+.day.mine{background:var(--teal);color:#fff;font-weight:600}
+.day.clash{background:var(--booked);color:#fff;font-weight:600;text-decoration:line-through}
+.contract{padding:16px;border-radius:16px;background:var(--teal-tint);border:1px solid #99F6E4;display:flex;gap:12px}
+.contract b{color:#134E4A}.contract p{font-size:14px;color:var(--teal-dark);margin-top:4px}
+.book{position:sticky;top:84px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(15,23,42,.08)}
+.book .total{font-size:22px;font-weight:700}
+.wa{min-height:52px;border:none;border-radius:14px;background:var(--wa);color:var(--wa-ink);font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;width:100%}
+.wa:hover{filter:brightness(.95)}
+.mbar{display:none}
+@media (max-width:860px){
+  .detail aside{display:none}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));gap:12px;align-items:center}
+  .mbar .wa{width:auto;padding:0 18px}
+}
+
+/* Modale */
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:60;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal .box{background:#fff;border-radius:20px;padding:22px;max-width:440px;width:100%;display:flex;flex-direction:column;gap:14px}
+.bubble{background:#DCF8C6;border-radius:12px 12px 12px 4px;padding:12px 14px;font-size:15px;white-space:pre-line}
+
+/* Espace loueur */
+.pro{display:flex;flex-wrap:wrap;min-height:calc(100vh - 100px)}
+.side{flex:1 1 220px;max-width:100%;background:#fff;border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:4px}
+.side .who{padding:0 8px 14px;font-size:14px;color:var(--muted)}
+.side .who b{display:block;color:var(--ink);font-size:16px}
+.side a{min-height:44px;padding:0 12px;border-radius:10px;display:flex;align-items:center;text-decoration:none;color:var(--ink);font-size:15px}
+.side a.on{background:var(--teal-tint);color:var(--teal);font-weight:600}
+.pro main{flex:999 1 560px;min-width:0;padding:24px 20px 60px;display:flex;flex-direction:column;gap:20px}
+@media (max-width:760px){.side{flex-direction:row;overflow-x:auto;padding:8px;gap:4px;border-right:none;border-bottom:1px solid var(--line)}.side .who{display:none}.side a{white-space:nowrap}}
+.phead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.phead h1{font-size:clamp(20px,2.6vw,26px);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stats .card{padding:14px 16px}
+.stats small{font-size:13px;color:var(--muted)}
+.stats b{display:block;font-size:24px;margin-top:4px}
+.legend{display:flex;gap:16px;font-size:13px;color:#44403C;flex-wrap:wrap}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+.fleet{overflow-x:auto}
+.fleet table{border-collapse:separate;border-spacing:3px;min-width:max-content}
+.fleet th{font-size:11px;font-weight:400;color:var(--muted);text-align:center}
+.fleet th.v{text-align:left;font-size:14px;font-weight:500;color:var(--ink);padding-right:10px;white-space:nowrap;position:sticky;left:0;background:#fff;z-index:1}
+.cell{width:26px;height:36px;border-radius:6px;border:1px solid var(--line);background:#F5F5F4;cursor:pointer;padding:0;display:block}
+.cell.on{background:var(--booked);border-color:var(--booked)}
+.daybtn{height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:14px}
+.daybtn.on{background:var(--booked);border-color:var(--booked);color:#fff;font-weight:600}
+.only-d{display:block}.only-m{display:none}
+@media (max-width:760px){.only-d{display:none}.only-m{display:block}}
+
+/* Assistant d'ajout */
+.wizard{max-width:640px;width:100%;display:flex;flex-direction:column;gap:18px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.steps span{height:6px;border-radius:6px;background:var(--line)}
+.steps span.on{background:var(--teal)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.auto{padding:14px;background:var(--teal-tint);border:1px solid #99F6E4;border-radius:16px}
+.auto p{font-size:14px;font-weight:600;color:#134E4A;margin-bottom:8px}
+.auto div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:14px}
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.slot{aspect-ratio:1;border-radius:12px;border:2px dashed var(--field);display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font-size:12px;color:#78716C;background:none;cursor:pointer}
+.slot.done{border:none;background:var(--photo);color:#44403C}
+.wfoot{display:flex;gap:10px}
+.wfoot .btn{flex:1}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;z-index:70;max-width:90vw;text-align:center}
+</style>
+</head>
+<body>
+<div class="demo">Maquette de démonstration — données et agences fictives, prix à compléter</div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#/">Safa<span>Raha</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#/resultats" class="hide-s" id="nav-louer">Louer une voiture</a>
+      <a href="#/loueur" class="btn-out" id="nav-loueur">Espace loueur</a>
+    </nav>
+  </div>
+</header>
+<div id="app"></div>
+<div id="layer"></div>
+
+<script>
+/* ---------- Données d'exemple ---------- */
+const PRIX = '[PRIX] DA';
+const CARS = [
+  {id:'tucson', name:'Hyundai Tucson 2021', type:'SUV', gear:'Automatique', fuel:'Diesel', seats:5, extra:'Km illimité · Livraison aéroport', owner:'Agence Hydra Auto', area:'Hydra, Alger', kind:'Pro', auto:true, driver:false, airport:true, km:true, min:2, booked:[3,4,5,6,22,23,24,25,26]},
+  {id:'symbol', name:'Renault Symbol 2022', type:'Berline', gear:'Manuelle', fuel:'Essence', seats:5, extra:'3 jours minimum', owner:'Karim B.', area:'Kouba, Alger', kind:'Particulier', auto:false, driver:false, airport:false, km:false, min:3, booked:[1,2,27,28]},
+  {id:'carnival', name:'Kia Carnival 2020', type:'7-8 places', gear:'Automatique', fuel:'Diesel', seats:8, extra:'Avec ou sans chauffeur', owner:'Agence El Bahia', area:'Bab Ezzouar, Alger', kind:'Pro', auto:true, driver:true, airport:true, km:true, min:2, booked:[8,9,10]},
+  {id:'logan', name:'Dacia Logan 2023', type:'Berline', gear:'Manuelle', fuel:'Essence', seats:5, extra:'Remise en agence', owner:'Agence Est Location', area:'Bab Ezzouar, Alger', kind:'Pro', auto:false, driver:false, airport:false, km:true, min:1, booked:[]},
+  {id:'hilux', name:'Toyota Hilux 2022', type:'Utilitaire', gear:'Manuelle', fuel:'Diesel', seats:5, extra:'Avec chauffeur uniquement', owner:'Agence Atlas', area:'Chéraga, Alger', kind:'Pro', auto:false, driver:true, airport:false, km:false, min:1, booked:[20,21]},
+  {id:'p208', name:'Peugeot 208 2023', type:'Citadine', gear:'Automatique', fuel:'Essence', seats:5, extra:'2 jours minimum', owner:'Samia K.', area:'El Biar, Alger', kind:'Particulier', auto:true, driver:false, airport:true, km:true, min:2, booked:[14,15]}
+];
+const TYPES = ['Citadine','Berline','Break','SUV','7-8 places','Utilitaire'];
+const TRIP = {from:12, to:18, label:'12 – 18 juil.', days:6};
+
+/* Flotte de l'agence (espace loueur) */
+let fleet = [
+  {name:'Hyundai Tucson 2021', booked:[3,4,5,6,22,23,24,25,26]},
+  {name:'Renault Symbol 2022', booked:[10,11,12,13,14]},
+  {name:'Kia Carnival 2020', booked:[1,2,15,16,17,18,19,20]},
+  {name:'Dacia Logan 2023', booked:[]},
+  {name:'Peugeot 208 2023', booked:[7,8,9,28,29,30,31]}
+];
+let current = 0;
+const filt = {type:'', auto:false, driver:false, airport:false, km:false, pro:true, part:true};
+let photo = 0, step = 1;
+
+/* ---------- Outils ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const carSvg = (w=60) => `<svg width="${w}" height="${Math.round(w*0.57)}" viewBox="0 0 56 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22v-5l6-8h24l10 8h6a2 2 0 0 1 2 2v3"/><circle cx="14" cy="24" r="4"/><circle cx="42" cy="24" r="4"/><path d="M18 24h20"/></svg>`;
+const icon = {
+  search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+  shield:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>',
+  doc:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 14l2 2 4-4"/></svg>',
+  chat:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z"/></svg>',
+  left:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
+  right:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>',
+  filter:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>'
+};
+function toast(msg){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3200)}
+function carCard(c){
+  return `<a class="car" href="#/fiche/${c.id}">
+    <div class="photo">${carSvg()}<span>Photos du véhicule</span><span class="badge">${c.kind}</span></div>
+    <div class="body"><span class="name">${esc(c.name)}</span>
+      <span class="specs">${c.gear} · ${c.fuel} · ${c.seats} places</span>
+      <span class="extra">${esc(c.extra)}</span>
+      <div class="foot"><span class="owner">${esc(c.owner)} · vérifié</span><span class="price"><b>${PRIX}</b><small> /jour</small></span></div>
+    </div></a>`;
+}
+const isFree = c => !c.booked.some(d => d>=TRIP.from && d<=TRIP.to) && c.min <= TRIP.days;
+
+/* ---------- Pages ---------- */
+function home(){
+  return `<div class="wrap">
+  <section class="hero">
+    <h1>Louez une voiture en toute sérénité</h1>
+    <p>Des loueurs vérifiés à Alger, des disponibilités à jour et un contrat standard pour chaque location.</p>
+    <form class="search" id="search">
+      <label class="field">Ville<select><option>Alger</option></select></label>
+      <label class="field">Départ<input type="date" value="2026-07-12"></label>
+      <label class="field">Retour<input type="date" value="2026-07-18"></label>
+      <label class="field">Type de véhicule<select id="s-type"><option value="">Tous les types</option>${TYPES.map(t=>`<option>${t}</option>`).join('')}</select></label>
+      <button class="btn" type="submit">${icon.search} Rechercher</button>
+    </form>
+  </section>
+  <section class="section"><h2>Par catégorie</h2>
+    <div class="cats">${TYPES.map(t=>`<a class="chip" href="#/resultats" data-type="${t}">${t}</a>`).join('')}<a class="chip" href="#/resultats" data-driver="1">Avec chauffeur</a></div>
+  </section>
+  <section class="section"><div class="trust">
+    <div class="card"><span class="ico">${icon.shield}</span><div><h3>Loueurs vérifiés</h3><p>Agences et particuliers contrôlés avant de publier, avec un badge Pro ou Particulier.</p></div></div>
+    <div class="card"><span class="ico">${icon.doc}</span><div><h3>Contrat SafaRaha</h3><p>Le même contrat équilibré pour toutes les locations, prérempli avec les conditions de l'annonce.</p></div></div>
+    <div class="card"><span class="ico">${icon.chat}</span><div><h3>Contact direct</h3><p>Vous échangez avec le loueur sur WhatsApp, sans intermédiaire.</p></div></div>
+  </div></section>
+  <section class="section"><h2>Disponibles du 12 au 18 juillet à Alger</h2>
+    <div class="grid">${CARS.filter(isFree).slice(0,4).map(carCard).join('')}</div>
+  </section>
+  <section class="band"><div><h2>Vous louez des voitures ?</h2><p>Publiez vos véhicules depuis votre téléphone, gérez vos disponibilités en deux clics et recevez des clients sur WhatsApp. Nous nous occupons de la publicité.</p></div>
+    <a class="btn" href="#/loueur">Découvrir l'espace loueur</a></section>
+  <footer class="foot"><span>© SafaRaha — maquette</span><a href="#/" style="color:inherit">Conditions d'utilisation</a><a href="#/" style="color:inherit">Confidentialité</a><a href="#/" style="color:inherit">Modèle de contrat</a></footer>
+  </div>`;
+}
+function homeBind(){
+  $('#search').addEventListener('submit', e => {e.preventDefault(); filt.type = $('#s-type').value; filt.driver=false; location.hash = '#/resultats';});
+  document.querySelectorAll('.cats .chip').forEach(a => a.addEventListener('click', () => {filt.type = a.dataset.type || ''; filt.driver = !!a.dataset.driver;}));
+}
+
+function results(){
+  return `<div class="wrap">
+  <div class="bar"><h1 id="r-title"></h1>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button class="chip open-filters" id="open-f" type="button">${icon.filter}&nbsp;Filtres</button>
+      <label class="field" style="flex-direction:row;align-items:center;gap:8px">Trier<select style="height:44px;width:auto"><option>Prix croissant</option><option>Prix décroissant</option><option>Plus récents</option></select></label>
+    </div></div>
+  <div class="results">
+    <aside class="card filters" id="filters" aria-label="Filtres">
+      <div style="display:flex;justify-content:space-between;align-items:center"><h2>Filtres</h2><button class="chip open-filters" id="close-f" type="button" aria-label="Fermer les filtres">Fermer</button></div>
+      <label class="field">Type de véhicule<select id="f-type"><option value="">Tous les types</option>${TYPES.map(t=>`<option ${filt.type===t?'selected':''}>${t}</option>`).join('')}</select></label>
+      <fieldset><legend>Options</legend>
+        <label class="check"><input type="checkbox" data-f="auto" ${filt.auto?'checked':''}> Boîte automatique</label>
+        <label class="check"><input type="checkbox" data-f="driver" ${filt.driver?'checked':''}> Avec chauffeur</label>
+        <label class="check"><input type="checkbox" data-f="airport" ${filt.airport?'checked':''}> Livraison à l'aéroport</label>
+        <label class="check"><input type="checkbox" data-f="km" ${filt.km?'checked':''}> Kilométrage illimité</label>
+      </fieldset>
+      <fieldset><legend>Loueur</legend>
+        <label class="check"><input type="checkbox" data-f="pro" ${filt.pro?'checked':''}> Professionnels</label>
+        <label class="check"><input type="checkbox" data-f="part" ${filt.part?'checked':''}> Particuliers</label>
+      </fieldset>
+      <button class="btn open-filters" id="apply-f" type="button" style="width:100%"></button>
+    </aside>
+    <div class="list"><div class="grid" id="r-grid"></div><p class="card empty" id="r-empty" hidden>Aucun véhicule ne correspond à ces filtres sur ces dates. Essayez d'en retirer un.</p></div>
+  </div></div>`;
+}
+function resultsBind(){
+  const draw = () => {
+    const list = CARS.filter(isFree).filter(c => (!filt.type || c.type===filt.type) && (!filt.auto||c.auto) && (!filt.driver||c.driver) && (!filt.airport||c.airport) && (!filt.km||c.km) && ((filt.pro && c.kind==='Pro') || (filt.part && c.kind==='Particulier')));
+    $('#r-grid').innerHTML = list.map(carCard).join('');
+    $('#r-empty').hidden = list.length>0;
+    const n = list.length + (list.length>1?' véhicules libres':' véhicule libre');
+    $('#r-title').textContent = `${n} à Alger · ${TRIP.label}${filt.type?' · '+filt.type:''}`;
+    $('#apply-f').textContent = `Voir ${list.length>1?'les '+list.length+' véhicules':list.length+' véhicule'}`;
+  };
+  document.querySelectorAll('[data-f]').forEach(i => i.addEventListener('change', () => {filt[i.dataset.f]=i.checked; draw();}));
+  $('#f-type').addEventListener('change', e => {filt.type=e.target.value; draw();});
+  const open = () => {$('#filters').classList.add('open'); const v=document.createElement('div'); v.className='veil'; v.id='veil'; v.onclick=close; document.body.appendChild(v);};
+  const close = () => {$('#filters').classList.remove('open'); const v=$('#veil'); if(v) v.remove();};
+  $('#open-f').onclick=open; $('#close-f').onclick=close; $('#apply-f').onclick=close;
+  draw();
+}
+
+const PHOTOS = ['Vue de face','Vue de côté','Vue arrière','Intérieur avant','Sièges arrière','Coffre'];
+function calendar(c){
+  let h = '<div class="head"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div><div class="days"><span></span><span></span>';
+  for(let d=1; d<=31; d++){
+    const b = c.booked.includes(d), m = d>=TRIP.from && d<=TRIP.to;
+    h += `<span class="day ${b&&m?'clash':b?'booked':m?'mine':''}">${d}</span>`;
+  }
+  return h + '</div>';
+}
+function detail(id){
+  const c = CARS.find(x=>x.id===id) || CARS[0];
+  const free = isFree(c);
+  const book = `<p class="price"><b style="font-size:24px">${PRIX}</b><small> /jour · ${c.min} jour${c.min>1?'s':''} minimum</small></p>
+      <p style="font-size:14px;color:var(--muted)">${TRIP.label} · ${TRIP.days} jours</p>
+      <p class="total">Total : [TOTAL] DA</p>
+      ${free?'':'<p style="color:var(--cta-dark);font-size:14px;font-weight:500">Déjà loué sur une partie de vos dates.</p>'}
+      <button class="wa" type="button" data-wa>${icon.chat} Contacter sur WhatsApp</button>`;
+  return `<div class="wrap">
+  <a class="back" href="#/resultats">${icon.left} Retour aux résultats</a>
+  <div class="detail">
+    <div class="main">
+      <div class="photo gallery">${carSvg(80)}<span id="ph-label">Photo 1 — ${PHOTOS[0]}</span>
+        <button class="nav-btn prev" type="button" aria-label="Photo précédente" data-ph="-1">${icon.left}</button>
+        <button class="nav-btn next" type="button" aria-label="Photo suivante" data-ph="1">${icon.right}</button>
+        <span class="count" id="ph-count">1 / ${PHOTOS.length}</span></div>
+      <div class="title"><span class="badge">${c.kind}</span> <span class="badge">Loueur vérifié</span>
+        <h1>${esc(c.name)}</h1><p class="sub">${c.type} · ${c.gear} · ${c.fuel} · ${c.seats} places</p></div>
+      <div class="card owner-card"><span class="avatar">${esc(c.owner.split(' ').map(w=>w[0]).slice(0,2).join(''))}</span>
+        <div style="flex:1"><b>${esc(c.owner)}</b><p style="font-size:13px;color:var(--muted)">${esc(c.area)}</p></div></div>
+      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">Caractéristiques</h2>
+        <div class="specgrid"><div><small>Catégorie</small><span>${c.type}</span></div><div><small>Boîte</small><span>${c.gear}</span></div><div><small>Carburant</small><span>${c.fuel}</span></div><div><small>Places</small><span>${c.seats}</span></div><div><small>Climatisation</small><span>Oui</span></div><div><small>Équipements</small><span>Bluetooth, caméra de recul</span></div></div></section>
+      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">Conditions de location</h2>
+        <div class="card rows">
+          <div><span>Durée minimale</span><span>${c.min} jour${c.min>1?'s':''}</span></div>
+          <div><span>Caution</span><span>[MONTANT] DA</span></div>
+          <div><span>Kilométrage</span><span>${c.km?'Illimité':'200 km / jour'}</span></div>
+          <div><span>Âge minimum</span><span>25 ans</span></div>
+          <div><span>Permis</span><span>3 ans minimum</span></div>
+          <div><span>Carburant</span><span>Rendu au même niveau</span></div>
+          <div><span>Annulation</span><span>Gratuite jusqu'à 48 h avant</span></div>
+        </div></section>
+      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">Services</h2>
+        <div class="tags">${c.airport?'<span>Livraison aéroport</span>':''}<span>Livraison à domicile</span><span>${c.driver?'Avec chauffeur':'Sans chauffeur'}</span><span>Siège bébé</span></div></section>
+      <section><h2 style="font-size:18px;font-weight:600">Disponibilités — juillet 2026</h2>
+        <p style="font-size:13px;color:var(--muted);margin:4px 0 10px">Vos dates sont en vert. Les jours barrés sont déjà loués.</p>
+        <div class="card cal">${calendar(c)}</div></section>
+      <div class="contract"><span style="color:var(--teal)">${icon.doc}</span><div><b>Location couverte par le contrat SafaRaha</b>
+        <p>Contrat standard équilibré, prérempli avec les conditions ci-dessus. Exigez-le à la remise des clés.</p>
+        <a href="#" data-contract style="display:inline-flex;min-height:44px;align-items:center;font-size:14px;font-weight:600">Voir le modèle de contrat</a></div></div>
+      <a href="#" data-report style="font-size:13px;color:var(--muted);align-self:center;min-height:44px;display:flex;align-items:center">Signaler cette annonce</a>
+    </div>
+    <aside><div class="card book">${book}</div></aside>
+  </div></div>
+  <div class="mbar"><div style="flex:1"><b>[TOTAL] DA</b><p style="font-size:12px;color:var(--muted)">${TRIP.label} · ${TRIP.days} jours</p></div><button class="wa" type="button" data-wa>${icon.chat} WhatsApp</button></div>`;
+}
+function detailBind(id){
+  const c = CARS.find(x=>x.id===id) || CARS[0];
+  photo = 0;
+  document.querySelectorAll('[data-ph]').forEach(b => b.onclick = () => {
+    photo = (photo + Number(b.dataset.ph) + PHOTOS.length) % PHOTOS.length;
+    $('#ph-label').textContent = `Photo ${photo+1} — ${PHOTOS[photo]}`;
+    $('#ph-count').textContent = `${photo+1} / ${PHOTOS.length}`;
+  });
+  document.querySelectorAll('[data-wa]').forEach(b => b.onclick = () => {
+    const msg = `Bonjour, je suis intéressé(e) par votre ${c.name} du 12 au 18 juillet (6 jours), vue sur SafaRaha. Est-elle toujours disponible ?`;
+    $('#layer').innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="Message WhatsApp"><div class="box">
+      <h2 style="font-size:18px;font-weight:600">WhatsApp s'ouvre avec ce message</h2>
+      <p style="font-size:14px;color:var(--muted)">Dans le vrai site, ce message est envoyé directement à ${esc(c.owner)}. Il peut le modifier avant l'envoi.</p>
+      <div class="bubble">${esc(msg)}</div>
+      <button class="btn teal" type="button" id="m-close">Compris</button></div></div>`;
+    $('#m-close').focus(); $('#m-close').onclick = () => $('#layer').innerHTML = '';
+  });
+  document.querySelector('[data-contract]').onclick = e => {e.preventDefault(); toast('Le modèle de contrat sera ajouté une fois validé par un avocat.');};
+  document.querySelector('[data-report]').onclick = e => {e.preventDefault(); toast('Merci, l’équipe SafaRaha va vérifier cette annonce.');};
+}
+
+/* ---------- Espace loueur ---------- */
+function proShell(active, inner){
+  const l = (h,t,k) => `<a href="${h}" class="${active===k?'on':''}">${t}</a>`;
+  return `<div class="pro"><nav class="side" aria-label="Espace loueur">
+    <div class="who">Connecté en tant que<b>Agence Hydra Auto</b></div>
+    ${l('#/loueur','Planning','planning')}${l('#/loueur/ajout','Ajouter un véhicule','ajout')}${l('#/loueur','Statistiques','stats')}${l('#/loueur','Profil de l’agence','profil')}${l('#/loueur','Abonnement','abo')}
+  </nav><main>${inner}</main></div>`;
+}
+function planning(){
+  return proShell('planning', `
+  <div class="phead"><div><p style="font-size:14px;color:var(--muted)">Agence Hydra Auto</p><h1>Planning — juillet 2026</h1></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn ghost" href="#/loueur/ajout" style="min-height:46px">Dupliquer une annonce</a><a class="btn" href="#/loueur/ajout" style="min-height:46px">Ajouter un véhicule</a></div></div>
+  <div class="stats"><div class="card"><small>Véhicules publiés</small><b id="st-n"></b></div><div class="card"><small>Jours loués ce mois-ci</small><b id="st-d"></b></div><div class="card"><small>Vues des annonces</small><b>[—]</b></div><div class="card"><small>Clics WhatsApp</small><b>[—]</b></div></div>
+  <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
+      <p style="font-size:14px;color:var(--muted)" class="only-d">Cliquez sur une case pour bloquer ou libérer un jour. La recherche est mise à jour aussitôt.</p>
+      <p style="font-size:14px;color:var(--muted)" class="only-m">Touchez un jour pour le bloquer ou le libérer.</p>
+      <div class="legend"><span><i style="background:#F5F5F4;border:1px solid var(--line)"></i>Libre</span><span><i style="background:var(--booked)"></i>Loué / bloqué</span></div></div>
+    <div class="only-d fleet" id="fleet"></div>
+    <div class="only-m"><div class="cats" id="veh" style="margin-bottom:12px"></div><div class="cal"><div class="head"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div><div class="days" id="mcal"></div></div></div>
+  </section>`);
+}
+function planningBind(){
+  const toggle = (v,d) => {const b=fleet[v].booked; const k=b.indexOf(d); k>=0?b.splice(k,1):b.push(d); draw();};
+  const draw = () => {
+    $('#st-n').textContent = fleet.length;
+    $('#st-d').textContent = fleet.reduce((s,f)=>s+f.booked.length,0);
+    let t = '<table><thead><tr><th class="v">Véhicule</th>';
+    for(let d=1; d<=31; d++) t += `<th>${d}</th>`;
+    t += '</tr></thead><tbody>';
+    fleet.forEach((f,v) => {
+      t += `<tr><th class="v" scope="row">${esc(f.name)}</th>`;
+      for(let d=1; d<=31; d++){const on=f.booked.includes(d); t += `<td><button type="button" class="cell ${on?'on':''}" data-v="${v}" data-d="${d}" aria-pressed="${on}" aria-label="${esc(f.name)}, ${d} juillet, ${on?'bloqué':'libre'}"></button></td>`;}
+      t += '</tr>';
+    });
+    $('#fleet').innerHTML = t + '</tbody></table>';
+    $('#veh').innerHTML = fleet.map((f,v)=>`<button type="button" class="chip ${v===current?'on':''}" data-pick="${v}">${esc(f.name)}</button>`).join('');
+    let m = '<span></span><span></span>';
+    for(let d=1; d<=31; d++){const on=fleet[current].booked.includes(d); m += `<button type="button" class="daybtn ${on?'on':''}" data-v="${current}" data-d="${d}" aria-pressed="${on}" aria-label="${d} juillet, ${on?'bloqué':'libre'}">${d}</button>`;}
+    $('#mcal').innerHTML = m;
+    document.querySelectorAll('[data-d]').forEach(b => b.onclick = () => toggle(Number(b.dataset.v), Number(b.dataset.d)));
+    document.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => {current=Number(b.dataset.pick); draw();});
+  };
+  draw();
+}
+
+function wizard(){
+  return proShell('ajout', `<div class="wizard">
+    <div><h1 style="font-size:24px;font-weight:700">Ajouter un véhicule</h1><p style="color:var(--muted);font-size:14px" id="w-n"></p></div>
+    <div class="steps" id="w-bars"><span></span><span></span><span></span><span></span></div>
+    <div id="w-body"></div>
+    <div class="wfoot"><button class="btn plain" type="button" id="w-back">Retour</button><button class="btn" type="button" id="w-next">Suivant</button></div>
+  </div>`);
+}
+const sel = (label, opts, pick) => `<label class="field">${label}<select>${opts.map(o=>`<option ${o===pick?'selected':''}>${o}</option>`).join('')}</select></label>`;
+const chk = (label, on) => `<label class="check"><input type="checkbox" ${on?'checked':''}> ${label}</label>`;
+const MODELS = {Hyundai:['Tucson','Accent','i10','Elantra','Creta'], Renault:['Symbol','Clio','Megane','Kangoo'], Dacia:['Logan','Sandero','Duster'], Kia:['Picanto','Sportage','Carnival'], Peugeot:['208','301','3008','Partner'], Toyota:['Yaris','Corolla','Hilux']};
+const AUTO = {Tucson:['SUV',5,'Diesel'], Accent:['Berline',5,'Essence'], i10:['Citadine',5,'Essence'], Elantra:['Berline',5,'Essence'], Creta:['SUV',5,'Essence'], Symbol:['Berline',5,'Essence'], Clio:['Citadine',5,'Essence'], Megane:['Berline',5,'Diesel'], Kangoo:['Utilitaire',5,'Diesel'], Logan:['Berline',5,'Essence'], Sandero:['Citadine',5,'Essence'], Duster:['SUV',5,'Diesel'], Picanto:['Citadine',5,'Essence'], Sportage:['SUV',5,'Diesel'], Carnival:['7-8 places',8,'Diesel'], '208':['Citadine',5,'Essence'], '301':['Berline',5,'Essence'], '3008':['SUV',5,'Diesel'], Partner:['Utilitaire',5,'Diesel'], Yaris:['Citadine',5,'Essence'], Corolla:['Berline',5,'Essence'], Hilux:['Utilitaire',5,'Diesel']};
+let draft = {brand:'Hyundai', model:'Tucson', year:'2021'};
+let shots = 0;
+function wizardBind(){
+  step = 1; shots = 0;
+  const body = () => {
+    if(step===1){
+      const a = AUTO[draft.model] || ['—','—','—'];
+      return `<div style="display:flex;flex-direction:column;gap:14px">
+        <h2 style="font-size:20px;font-weight:600">Quel véhicule ?</h2>
+        <div class="two"><label class="field">Marque<select id="w-brand">${Object.keys(MODELS).map(b=>`<option ${b===draft.brand?'selected':''}>${b}</option>`).join('')}</select></label>
+        <label class="field">Modèle<select id="w-model">${MODELS[draft.brand].map(m=>`<option ${m===draft.model?'selected':''}>${m}</option>`).join('')}</select></label></div>
+        <label class="field">Année<select id="w-year">${['2025','2024','2023','2022','2021','2020','2019'].map(y=>`<option ${y===draft.year?'selected':''}>${y}</option>`).join('')}</select></label>
+        <div class="auto"><p>Rempli automatiquement d'après le modèle — modifiable</p><div><span>Catégorie : <b>${a[0]}</b></span><span>Places : <b>${a[1]}</b></span><span>Carburant : <b>${a[2]}</b></span><span>Portes : <b>5</b></span></div></div>
+        ${sel('Boîte de vitesses',['Automatique','Manuelle'],'Automatique')}
+        <fieldset style="border:none;margin:0;padding:0"><legend class="field" style="margin-bottom:4px">Équipements</legend>${chk('Climatisation',true)}${chk('Bluetooth / CarPlay',true)}${chk('Caméra de recul',false)}${chk('GPS',false)}</fieldset></div>`;
+    }
+    if(step===2){
+      const names=['Face','Côté','Arrière','Intérieur','Sièges','Coffre'];
+      return `<div style="display:flex;flex-direction:column;gap:14px">
+        <h2 style="font-size:20px;font-weight:600">Photos</h2>
+        <p style="color:var(--muted);font-size:14px">6 photos conseillées. Elles sont compressées automatiquement pour les connexions lentes.</p>
+        <button class="btn teal" type="button" id="w-shot">Prendre une photo</button>
+        <div class="slots">${names.map((n,i)=>`<button type="button" class="slot ${i<shots?'done':''}" data-slot="${i}">${n}${i<shots?' ✓':''}</button>`).join('')}</div></div>`;
+    }
+    if(step===3){
+      return `<div style="display:flex;flex-direction:column;gap:14px">
+        <h2 style="font-size:20px;font-weight:600">Prix et conditions</h2>
+        <label class="field">Prix par jour (DA)<input type="number" inputmode="numeric" placeholder="Votre prix"></label>
+        <div class="two">${sel('Durée minimale',['1 jour','2 jours','3 jours','7 jours'],'2 jours')}
+        <label class="field">Caution (DA)<input type="number" inputmode="numeric" placeholder="Montant"></label>
+        ${sel('Kilométrage',['Illimité','200 km / jour','300 km / jour'],'Illimité')}
+        ${sel('Âge minimum',['21 ans','23 ans','25 ans'],'25 ans')}
+        ${sel('Permis depuis',['1 an','2 ans','3 ans'],'3 ans')}
+        ${sel('Chauffeur',['Sans chauffeur','Avec chauffeur','Au choix du client'],'Sans chauffeur')}</div>
+        ${sel('Carburant',['Rendu au même niveau','Plein contre plein'],'Rendu au même niveau')}
+        ${sel('Annulation',["Gratuite jusqu'à 48 h avant","Gratuite jusqu'à 7 jours avant",'Non remboursable'],"Gratuite jusqu'à 48 h avant")}
+        <fieldset style="border:none;margin:0;padding:0"><legend class="field" style="margin-bottom:4px">Services</legend>${chk("Livraison à l'aéroport",true)}${chk('Livraison à domicile',false)}${chk('Siège bébé',false)}</fieldset></div>`;
+    }
+    return `<div style="display:flex;flex-direction:column;gap:14px">
+      <h2 style="font-size:20px;font-weight:600">Lieu et publication</h2>
+      ${sel('Ville',['Alger'],'Alger')}
+      <label class="field">Quartier de remise<input type="text" placeholder="Ex. Hydra"></label>
+      <div class="card" style="padding:14px;font-size:14px;display:flex;flex-direction:column;gap:4px"><b style="font-size:15px">Récapitulatif</b><span>${draft.brand} ${draft.model} ${draft.year}</span><span>${shots} photo${shots>1?'s':''} · 2 jours minimum · km illimité</span></div>
+      <label class="check" style="align-items:flex-start"><input type="checkbox" id="w-engage" checked style="margin-top:3px"> Je m'engage à utiliser le contrat de location SafaRaha pour chaque location de ce véhicule.</label></div>`;
+  };
+  const draw = () => {
+    $('#w-n').textContent = `Étape ${step} sur 4`;
+    document.querySelectorAll('#w-bars span').forEach((s,i)=>s.classList.toggle('on', i<step));
+    $('#w-body').innerHTML = body();
+    $('#w-back').style.visibility = step===1?'hidden':'visible';
+    $('#w-next').textContent = step===4?'Publier l’annonce':'Suivant';
+    if(step===1){
+      $('#w-brand').onchange = e => {draft.brand=e.target.value; draft.model=MODELS[draft.brand][0]; draw();};
+      $('#w-model').onchange = e => {draft.model=e.target.value; draw();};
+      $('#w-year').onchange = e => {draft.year=e.target.value;};
+    }
+    if(step===2){
+      const add = () => {if(shots<6){shots++; draw();}};
+      $('#w-shot').onclick = add;
+      document.querySelectorAll('[data-slot]').forEach(b=>b.onclick=add);
+    }
+  };
+  $('#w-back').onclick = () => {step=Math.max(1,step-1); draw();};
+  $('#w-next').onclick = () => {
+    if(step<4){step++; draw(); window.scrollTo(0,0); return;}
+    if(!$('#w-engage').checked){toast('L’engagement à utiliser le contrat SafaRaha est obligatoire pour publier.'); return;}
+    fleet.push({name:`${draft.brand} ${draft.model} ${draft.year}`, booked:[]});
+    current = fleet.length-1;
+    location.hash = '#/loueur';
+    setTimeout(()=>toast('Annonce publiée. Elle apparaît dans votre planning.'),100);
+  };
+  draw();
+}
+
+/* ---------- Navigation ---------- */
+function route(){
+  const h = location.hash.replace(/^#\/?/,'');
+  const [page, arg] = h.split('/');
+  const app = $('#app');
+  $('#layer').innerHTML=''; const v=$('#veil'); if(v) v.remove();
+  $('#nav-louer').classList.toggle('on', page==='resultats');
+  $('#nav-loueur').classList.toggle('on', page==='loueur');
+  if(page==='resultats'){app.innerHTML=results(); resultsBind(); document.title='Résultats — SafaRaha';}
+  else if(page==='fiche'){app.innerHTML=detail(arg); detailBind(arg); document.title='Fiche véhicule — SafaRaha';}
+  else if(page==='loueur' && arg==='ajout'){app.innerHTML=wizard(); wizardBind(); document.title='Ajouter un véhicule — SafaRaha';}
+  else if(page==='loueur'){app.innerHTML=planning(); planningBind(); document.title='Espace loueur — SafaRaha';}
+  else {app.innerHTML=home(); homeBind(); document.title='SafaRaha — Louez une voiture en toute sérénité';}
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', route);
+document.addEventListener('keydown', e => {if(e.key==='Escape'){ $('#layer').innerHTML=''; const f=$('#filters'); if(f) f.classList.remove('open'); const v=$('#veil'); if(v) v.remove(); }});
+route();
+</script>
+</body>
+</html>
