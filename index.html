@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SafaRaha — Maquette de démonstration</title>
+<title>SafaRaha</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap">
@@ -17,29 +17,28 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--sand);color:var(--ink);font-family:'Readex Pro',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+body{background:var(--sand);color:var(--ink);font-family:'Readex Pro',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+[dir=rtl] body{line-height:1.6}
 a{color:var(--teal)}
 button,input,select{font:inherit;color:inherit}
 h1,h2,h3,p{margin:0}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:3px solid #0EA5E9;outline-offset:2px}
+[dir=rtl] .flip{transform:scaleX(-1)}
 
-/* Bandeau démo */
 .demo{background:var(--ink);color:#F5F5F4;font-size:13px;text-align:center;padding:8px 16px}
 
-/* En-tête */
 .top{background:var(--sand);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
-.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;min-height:64px;padding-top:8px;padding-bottom:8px}
 .logo{font-size:24px;font-weight:700;letter-spacing:-.5px;color:var(--teal);text-decoration:none}
 .logo span{color:var(--cta)}
-.nav{display:flex;gap:4px;margin-left:auto;align-items:center}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin-inline-start:auto;align-items:center}
 .nav a{min-height:44px;display:flex;align-items:center;padding:0 12px;border-radius:10px;text-decoration:none;color:var(--ink);font-size:15px}
 .nav a.on{color:var(--teal);font-weight:600}
 .nav a.btn-out{border:1px solid var(--teal);color:var(--teal);font-weight:500}
-@media (max-width:640px){.nav .hide-s{display:none}}
+.switch{height:40px;border:1px solid var(--field);border-radius:10px;background:#fff;padding:0 8px;font-size:14px;color:var(--ink)}
+@media (max-width:640px){.nav .hide-s{display:none}.logo{font-size:22px}}
 
-/* Boutons et champs */
 .btn{min-height:52px;border:none;border-radius:14px;background:var(--cta);color:#fff;font-size:16px;font-weight:600;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;text-decoration:none}
 .btn:hover{background:var(--cta-dark)}
 .btn.teal{background:var(--teal)}.btn.teal:hover{background:var(--teal-dark)}
@@ -55,9 +54,8 @@ h1,h2,h3,p{margin:0}
 .badge{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal-dark);font-size:12px;font-weight:600}
 .card{background:var(--card);border-radius:var(--r)}
 
-/* Accueil */
 .hero{padding:40px 0 8px}
-.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.08;font-weight:700;max-width:760px}
+.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.15;font-weight:700;max-width:760px}
 .hero p{margin-top:14px;font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:620px}
 .search{margin-top:24px;background:#fff;border-radius:20px;box-shadow:0 8px 30px rgba(15,23,42,.08);padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
 .search .btn{width:100%}
@@ -74,13 +72,14 @@ h1,h2,h3,p{margin:0}
 .car:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(15,23,42,.1)}
 .photo{background:var(--photo);color:#78716C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;font-size:12px}
 .car .photo{height:180px}
-.car .photo .badge{position:absolute;top:12px;left:12px;background:#fff;color:var(--teal)}
+.car .photo .badge{position:absolute;top:12px;inset-inline-start:12px;background:#fff;color:var(--teal)}
 .car .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
 .car .name{font-size:16px;font-weight:600}
 .car .specs{font-size:13px;color:var(--muted)}
 .car .extra{font-size:13px;color:#44403C}
 .car .foot{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:6px}
 .car .owner{font-size:12px;color:var(--muted)}
+.price{white-space:nowrap}
 .price b{font-size:18px;color:var(--teal)}.price small{font-size:12px;color:var(--muted)}
 .band{margin-top:44px;background:var(--teal);color:#fff;border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
 .band h2{font-size:26px;font-weight:700}
@@ -88,7 +87,6 @@ h1,h2,h3,p{margin:0}
 .band .btn{background:#fff;color:var(--teal)}
 footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px 24px}
 
-/* Résultats */
 .bar{padding:16px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
 .bar h1{font-size:clamp(18px,2.4vw,24px);font-weight:600}
 .results{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;padding-bottom:40px}
@@ -106,15 +104,14 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
   .veil{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:39}
 }
 
-/* Fiche */
 .back{min-height:44px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);font-size:15px;margin:12px 0}
 .detail{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;padding-bottom:120px}
 .detail .main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:24px}
 .detail aside{flex:1 1 300px}
 .gallery{height:clamp(240px,40vw,420px);border-radius:20px;overflow:hidden}
 .gallery .nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:none;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer}
-.gallery .prev{left:12px}.gallery .next{right:12px}
-.gallery .count{position:absolute;bottom:12px;right:12px;background:rgba(15,23,42,.75);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px}
+.gallery .prev{inset-inline-start:12px}.gallery .next{inset-inline-end:12px}
+.gallery .count{position:absolute;bottom:12px;inset-inline-end:12px;background:rgba(15,23,42,.75);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px}
 .title h1{font-size:clamp(22px,3vw,30px);font-weight:700;margin-top:6px}
 .title .sub{color:var(--muted);font-size:15px}
 .owner-card{padding:14px;display:flex;align-items:center;gap:12px}
@@ -127,7 +124,7 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
 .rows div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #F5F5F4;font-size:14px}
 .rows div:last-child{border-bottom:none}
 .rows span:first-child{color:var(--muted)}
-.rows span:last-child{font-weight:500;text-align:right}
+.rows span:last-child{font-weight:500;text-align:end}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
 .tags span{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px}
 .cal{padding:14px}
@@ -139,7 +136,7 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
 .day.clash{background:var(--booked);color:#fff;font-weight:600;text-decoration:line-through}
 .contract{padding:16px;border-radius:16px;background:var(--teal-tint);border:1px solid #99F6E4;display:flex;gap:12px}
 .contract b{color:#134E4A}.contract p{font-size:14px;color:var(--teal-dark);margin-top:4px}
-.book{position:sticky;top:84px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(15,23,42,.08)}
+.book{position:sticky;top:96px;padding:20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 30px rgba(15,23,42,.08)}
 .book .total{font-size:22px;font-weight:700}
 .wa{min-height:52px;border:none;border-radius:14px;background:var(--wa);color:var(--wa-ink);font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;width:100%}
 .wa:hover{filter:brightness(.95)}
@@ -150,20 +147,18 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
   .mbar .wa{width:auto;padding:0 18px}
 }
 
-/* Modale */
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:60;display:flex;align-items:center;justify-content:center;padding:20px}
 .modal .box{background:#fff;border-radius:20px;padding:22px;max-width:440px;width:100%;display:flex;flex-direction:column;gap:14px}
-.bubble{background:#DCF8C6;border-radius:12px 12px 12px 4px;padding:12px 14px;font-size:15px;white-space:pre-line}
+.bubble{background:#DCF8C6;border-radius:12px;padding:12px 14px;font-size:15px;white-space:pre-line}
 
-/* Espace loueur */
-.pro{display:flex;flex-wrap:wrap;min-height:calc(100vh - 100px)}
-.side{flex:1 1 220px;max-width:100%;background:#fff;border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:4px}
+.pro{display:flex;flex-wrap:wrap;min-height:calc(100vh - 110px)}
+.side{flex:1 1 220px;max-width:100%;background:#fff;border-inline-end:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:4px}
 .side .who{padding:0 8px 14px;font-size:14px;color:var(--muted)}
 .side .who b{display:block;color:var(--ink);font-size:16px}
 .side a{min-height:44px;padding:0 12px;border-radius:10px;display:flex;align-items:center;text-decoration:none;color:var(--ink);font-size:15px}
 .side a.on{background:var(--teal-tint);color:var(--teal);font-weight:600}
 .pro main{flex:999 1 560px;min-width:0;padding:24px 20px 60px;display:flex;flex-direction:column;gap:20px}
-@media (max-width:760px){.side{flex-direction:row;overflow-x:auto;padding:8px;gap:4px;border-right:none;border-bottom:1px solid var(--line)}.side .who{display:none}.side a{white-space:nowrap}}
+@media (max-width:760px){.side{flex-direction:row;overflow-x:auto;padding:8px;gap:4px;border-inline-end:none;border-bottom:1px solid var(--line)}.side .who{display:none}.side a{white-space:nowrap}}
 .phead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 .phead h1{font-size:clamp(20px,2.6vw,26px);font-weight:700}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
@@ -171,11 +166,11 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
 .stats small{font-size:13px;color:var(--muted)}
 .stats b{display:block;font-size:24px;margin-top:4px}
 .legend{display:flex;gap:16px;font-size:13px;color:#44403C;flex-wrap:wrap}
-.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-inline-end:6px}
 .fleet{overflow-x:auto}
 .fleet table{border-collapse:separate;border-spacing:3px;min-width:max-content}
 .fleet th{font-size:11px;font-weight:400;color:var(--muted);text-align:center}
-.fleet th.v{text-align:left;font-size:14px;font-weight:500;color:var(--ink);padding-right:10px;white-space:nowrap;position:sticky;left:0;background:#fff;z-index:1}
+.fleet th.v{text-align:start;font-size:14px;font-weight:500;color:var(--ink);padding-inline-end:10px;white-space:nowrap;position:sticky;inset-inline-start:0;background:#fff;z-index:1}
 .cell{width:26px;height:36px;border-radius:6px;border:1px solid var(--line);background:#F5F5F4;cursor:pointer;padding:0;display:block}
 .cell.on{background:var(--booked);border-color:var(--booked)}
 .daybtn{height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:14px}
@@ -183,7 +178,6 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
 .only-d{display:block}.only-m{display:none}
 @media (max-width:760px){.only-d{display:none}.only-m{display:block}}
 
-/* Assistant d'ajout */
 .wizard{max-width:640px;width:100%;display:flex;flex-direction:column;gap:18px}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .steps span{height:6px;border-radius:6px;background:var(--line)}
@@ -201,98 +195,260 @@ footer.foot{padding:40px 0 32px;font-size:14px;color:var(--muted);display:flex;f
 </style>
 </head>
 <body>
-<div class="demo">Maquette de démonstration — données et agences fictives, prix à compléter</div>
+<div class="demo" id="demo"></div>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#/">Safa<span>Raha</span></a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="#/resultats" class="hide-s" id="nav-louer">Louer une voiture</a>
-      <a href="#/loueur" class="btn-out" id="nav-loueur">Espace loueur</a>
-    </nav>
+    <a class="logo" href="#/" id="logo">Safa<span>Raha</span></a>
+    <nav class="nav" id="nav"></nav>
   </div>
 </header>
 <div id="app"></div>
 <div id="layer"></div>
 
 <script>
-/* ---------- Données d'exemple ---------- */
-const PRIX = '[PRIX] DA';
-const CARS = [
-  {id:'tucson', name:'Hyundai Tucson 2021', type:'SUV', gear:'Automatique', fuel:'Diesel', seats:5, extra:'Km illimité · Livraison aéroport', owner:'Agence Hydra Auto', area:'Hydra, Alger', kind:'Pro', auto:true, driver:false, airport:true, km:true, min:2, booked:[3,4,5,6,22,23,24,25,26]},
-  {id:'symbol', name:'Renault Symbol 2022', type:'Berline', gear:'Manuelle', fuel:'Essence', seats:5, extra:'3 jours minimum', owner:'Karim B.', area:'Kouba, Alger', kind:'Particulier', auto:false, driver:false, airport:false, km:false, min:3, booked:[1,2,27,28]},
-  {id:'carnival', name:'Kia Carnival 2020', type:'7-8 places', gear:'Automatique', fuel:'Diesel', seats:8, extra:'Avec ou sans chauffeur', owner:'Agence El Bahia', area:'Bab Ezzouar, Alger', kind:'Pro', auto:true, driver:true, airport:true, km:true, min:2, booked:[8,9,10]},
-  {id:'logan', name:'Dacia Logan 2023', type:'Berline', gear:'Manuelle', fuel:'Essence', seats:5, extra:'Remise en agence', owner:'Agence Est Location', area:'Bab Ezzouar, Alger', kind:'Pro', auto:false, driver:false, airport:false, km:true, min:1, booked:[]},
-  {id:'hilux', name:'Toyota Hilux 2022', type:'Utilitaire', gear:'Manuelle', fuel:'Diesel', seats:5, extra:'Avec chauffeur uniquement', owner:'Agence Atlas', area:'Chéraga, Alger', kind:'Pro', auto:false, driver:true, airport:false, km:false, min:1, booked:[20,21]},
-  {id:'p208', name:'Peugeot 208 2023', type:'Citadine', gear:'Automatique', fuel:'Essence', seats:5, extra:'2 jours minimum', owner:'Samia K.', area:'El Biar, Alger', kind:'Particulier', auto:true, driver:false, airport:true, km:true, min:2, booked:[14,15]}
-];
-const TYPES = ['Citadine','Berline','Break','SUV','7-8 places','Utilitaire'];
-const TRIP = {from:12, to:18, label:'12 – 18 juil.', days:6};
+/* =========================================================
+   Langue et pays
+   ========================================================= */
+const LANGS = ['fr','ar','en'];
+let lang = 'fr', country = 'dz';
+(function init(){
+  const q = new URLSearchParams(location.search);
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('safaraha') || '{}'); } catch(e) {}
+  const l = q.get('lang') || saved.lang; if (LANGS.includes(l)) lang = l;
+  const c = q.get('pays') || q.get('country') || saved.country; if (c === 'dz' || c === 'eg') country = c;
+})();
+const I = () => LANGS.indexOf(lang);
 
-/* Flotte de l'agence (espace loueur) */
-let fleet = [
-  {name:'Hyundai Tucson 2021', booked:[3,4,5,6,22,23,24,25,26]},
-  {name:'Renault Symbol 2022', booked:[10,11,12,13,14]},
-  {name:'Kia Carnival 2020', booked:[1,2,15,16,17,18,19,20]},
-  {name:'Dacia Logan 2023', booked:[]},
-  {name:'Peugeot 208 2023', booked:[7,8,9,28,29,30,31]}
-];
-let current = 0;
+/* Textes : [français, arabe, anglais] */
+const T = {
+  demo:["Maquette de démonstration — données et agences fictives, prix à compléter","نسخة تجريبية للعرض — البيانات والوكالات وهمية، والأسعار ستُضاف لاحقًا","Demo prototype — sample data and fictional agencies, prices to be added"],
+  navRent:["Louer une voiture","استأجر سيارة","Rent a car"],
+  navPro:["Espace loueur","مساحة المؤجِّر","Owner area"],
+  langLabel:["Langue","اللغة","Language"], countryLabel:["Pays","البلد","Country"],
+  dz:["Algérie","الجزائر","Algeria"], eg:["Égypte","مصر","Egypt"],
+  heroT:["Louez une voiture en toute sérénité","استأجر سيارتك براحة بال","Rent a car with peace of mind"],
+  heroP:["Des loueurs vérifiés à {city}, des disponibilités à jour et un contrat standard pour chaque location.","مؤجِّرون موثَّقون في {city}، ومواعيد إتاحة محدَّثة، وعقد موحَّد لكل عملية إيجار.","Verified rental owners in {city}, up-to-date availability and a standard contract for every rental."],
+  city:["Ville","المدينة","City"], from:["Départ","تاريخ الاستلام","Pick-up"], to:["Retour","تاريخ الإرجاع","Return"],
+  type:["Type de véhicule","نوع السيارة","Vehicle type"], allTypes:["Tous les types","كل الأنواع","All types"],
+  search:["Rechercher","ابحث","Search"], byCat:["Par catégorie","حسب الفئة","By category"],
+  t_city:["Citadine","سيارة صغيرة","City car"], t_sedan:["Berline","سيدان","Sedan"], t_estate:["Break","ستيشن","Estate"],
+  t_suv:["SUV","دفع رباعي (SUV)","SUV"], t_seven:["7-8 places","7 - 8 مقاعد","7-8 seats"], t_utility:["Utilitaire","نقل وميني باص","Utility / van"],
+  withDriver:["Avec chauffeur","مع سائق","With driver"], withoutDriver:["Sans chauffeur","بدون سائق","Without driver"],
+  tr1T:["Loueurs vérifiés","مؤجِّرون موثَّقون","Verified owners"],
+  tr1:["Agences et particuliers contrôlés avant de publier, avec un badge Pro ou Particulier.","نتحقق من الوكالات والأفراد قبل النشر، مع شارة «محترف» أو «فرد».","Agencies and individuals are checked before publishing, with a Pro or Individual badge."],
+  tr2T:["Contrat SafaRaha","عقد صفا راحة","SafaRaha contract"],
+  tr2:["Le même contrat équilibré pour toutes les locations, prérempli avec les conditions de l'annonce.","نفس العقد المتوازن لكل عمليات الإيجار، مُعبّأ مسبقًا بشروط الإعلان.","The same balanced contract for every rental, pre-filled with the listing's terms."],
+  tr3T:["Contact direct","تواصل مباشر","Direct contact"],
+  tr3:["Vous échangez avec le loueur sur WhatsApp, sans intermédiaire.","تتواصل مع المؤجِّر مباشرة عبر واتساب دون وسيط.","You talk to the owner directly on WhatsApp, with no middleman."],
+  avail:["Disponibles du {a} au {b} {m} à {city}","متاحة من {a} إلى {b} {m} في {city}","Available {m} {a}–{b} in {city}"],
+  bandT:["Vous louez des voitures ?","هل تؤجِّر سيارات؟","Do you rent out cars?"],
+  bandP:["Publiez vos véhicules depuis votre téléphone, gérez vos disponibilités en deux clics et recevez des clients sur WhatsApp. Nous nous occupons de la publicité.","انشر سياراتك من هاتفك، وأدِر مواعيد الإتاحة بنقرتين، واستقبل العملاء عبر واتساب. ونحن نتولى الإعلان.","List your cars from your phone, manage availability in two taps and get customers on WhatsApp. We take care of the advertising."],
+  bandBtn:["Découvrir l'espace loueur","اكتشف مساحة المؤجِّر","Explore the owner area"],
+  foot:["© SafaRaha — maquette","© صفا راحة — نسخة تجريبية","© SafaRaha — prototype"],
+  terms:["Conditions d'utilisation","شروط الاستخدام","Terms of use"], privacy:["Confidentialité","الخصوصية","Privacy"], contractModel:["Modèle de contrat","نموذج العقد","Contract template"],
+  photos:["Photos du véhicule","صور السيارة","Vehicle photos"], verified:["vérifié","موثَّق","verified"],
+  perDay:[" /jour"," / اليوم"," /day"], seats:["places","مقاعد","seats"],
+  pro:["Pro","محترف","Pro"], part:["Particulier","فرد","Individual"],
+  auto:["Automatique","أوتوماتيك","Automatic"], manual:["Manuelle","مانيوال","Manual"],
+  petrol:["Essence","بنزين","Petrol"], diesel:["Diesel","ديزل","Diesel"],
+  kmFree:["Km illimité","كيلومترات مفتوحة","Unlimited mileage"], airport:["Livraison aéroport","توصيل للمطار","Airport delivery"],
+  driverOnly:["Avec chauffeur uniquement","مع سائق فقط","With driver only"], driverOpt:["Avec ou sans chauffeur","مع سائق أو بدونه","With or without driver"],
+  minN:["{d} minimum","{d} كحد أدنى","{d} minimum"],
+  filters:["Filtres","الفلاتر","Filters"], close:["Fermer","إغلاق","Close"], sort:["Trier","ترتيب","Sort"],
+  s1:["Prix croissant","السعر: من الأقل","Price: low to high"], s2:["Prix décroissant","السعر: من الأعلى","Price: high to low"], s3:["Plus récents","الأحدث","Newest"],
+  options:["Options","خيارات","Options"], fAuto:["Boîte automatique","ناقل حركة أوتوماتيك","Automatic gearbox"],
+  fAirport:["Livraison à l'aéroport","توصيل إلى المطار","Airport delivery"], fKm:["Kilométrage illimité","كيلومترات غير محدودة","Unlimited mileage"],
+  owner:["Loueur","المؤجِّر","Owner"], pros:["Professionnels","محترفون","Professionals"], parts:["Particuliers","أفراد","Individuals"],
+  seeN:["Voir les résultats ({n})","عرض النتائج ({n})","Show results ({n})"],
+  resT:["{count} à {city} · {dates}","{count} في {city} · {dates}","{count} in {city} · {dates}"],
+  empty:["Aucun véhicule ne correspond à ces filtres sur ces dates. Essayez d'en retirer un.","لا توجد سيارة تطابق هذه الفلاتر في هذه التواريخ. جرّب إزالة أحدها.","No car matches these filters for these dates. Try removing one."],
+  back:["Retour aux résultats","العودة إلى النتائج","Back to results"],
+  photoN:["Photo {i} — {l}","صورة {i} — {l}","Photo {i} — {l}"],
+  ph:[["Vue de face","Vue de côté","Vue arrière","Intérieur avant","Sièges arrière","Coffre"],["من الأمام","من الجانب","من الخلف","المقصورة الأمامية","المقاعد الخلفية","صندوق الأمتعة"],["Front","Side","Rear","Front interior","Rear seats","Boot"]],
+  prevPh:["Photo précédente","الصورة السابقة","Previous photo"], nextPh:["Photo suivante","الصورة التالية","Next photo"],
+  verifiedOwner:["Loueur vérifié","مؤجِّر موثَّق","Verified owner"],
+  specsT:["Caractéristiques","المواصفات","Specifications"], category:["Catégorie","الفئة","Category"], gearbox:["Boîte","ناقل الحركة","Gearbox"],
+  fuel:["Carburant","الوقود","Fuel"], seatsT:["Places","المقاعد","Seats"], ac:["Climatisation","التكييف","Air conditioning"], yes:["Oui","نعم","Yes"],
+  equip:["Équipements","التجهيزات","Equipment"], equipVal:["Bluetooth, caméra de recul","بلوتوث، كاميرا خلفية","Bluetooth, rear camera"],
+  condT:["Conditions de location","شروط الإيجار","Rental terms"], minDur:["Durée minimale","الحد الأدنى للمدة","Minimum rental"],
+  deposit:["Caution","التأمين","Deposit"], amountPh:["[MONTANT]","[المبلغ]","[AMOUNT]"], mileage:["Kilométrage","الكيلومترات","Mileage"],
+  unlimited:["Illimité","غير محدودة","Unlimited"], km200:["200 km / jour","200 كم / يوم","200 km / day"], km300:["300 km / jour","300 كم / يوم","300 km / day"],
+  minAge:["Âge minimum","الحد الأدنى للسن","Minimum age"], licence:["Permis","رخصة القيادة","Driving licence"], lic3:["3 ans minimum","3 سنوات على الأقل","At least 3 years"],
+  sameLevel:["Rendu au même niveau","يُعاد بنفس المستوى","Returned at the same level"], fullFull:["Plein contre plein","استلام وتسليم بخزان ممتلئ","Full to full"],
+  cancel:["Annulation","الإلغاء","Cancellation"], c48:["Gratuite jusqu'à 48 h avant","مجاني حتى 48 ساعة قبل الموعد","Free up to 48 h before"],
+  c7:["Gratuite jusqu'à 7 jours avant","مجاني حتى 7 أيام قبل الموعد","Free up to 7 days before"], cNo:["Non remboursable","غير قابل للاسترداد","Non-refundable"],
+  servicesT:["Services","الخدمات","Services"], home:["Livraison à domicile","توصيل إلى المنزل","Home delivery"], babySeat:["Siège bébé","كرسي أطفال","Child seat"],
+  availT:["Disponibilités — {m} 2026","المواعيد المتاحة — {m} 2026","Availability — {m} 2026"],
+  availH:["Vos dates sont en vert. Les jours barrés sont déjà loués.","تواريخك باللون الأخضر، والأيام المشطوبة محجوزة بالفعل.","Your dates are in green. Struck-through days are already booked."],
+  contractT:["Location couverte par le contrat SafaRaha","الإيجار مشمول بعقد صفا راحة","Rental covered by the SafaRaha contract"],
+  contractP:["Contrat standard équilibré, prérempli avec les conditions ci-dessus. Exigez-le à la remise des clés.","عقد موحَّد ومتوازن، مُعبّأ مسبقًا بالشروط أعلاه. اطلبه عند استلام المفاتيح.","A balanced standard contract, pre-filled with the terms above. Ask for it when you collect the keys."],
+  seeContract:["Voir le modèle de contrat","عرض نموذج العقد","View the contract template"],
+  report:["Signaler cette annonce","الإبلاغ عن هذا الإعلان","Report this listing"],
+  total:["Total : {v}","الإجمالي: {v}","Total: {v}"], totalPh:["[TOTAL]","[الإجمالي]","[TOTAL]"], pricePh:["[PRIX]","[السعر]","[PRICE]"],
+  clash:["Déjà loué sur une partie de vos dates.","محجوزة في جزء من تواريخك.","Already booked on some of your dates."],
+  wa:["Contacter sur WhatsApp","تواصل عبر واتساب","Contact on WhatsApp"], waShort:["WhatsApp","واتساب","WhatsApp"],
+  waT:["WhatsApp s'ouvre avec ce message","يُفتح واتساب بهذه الرسالة","WhatsApp opens with this message"],
+  waP:["Dans le vrai site, ce message est envoyé directement à {o}. Vous pouvez le modifier avant l'envoi.","في الموقع الفعلي تُرسل هذه الرسالة مباشرة إلى {o}، ويمكنك تعديلها قبل الإرسال.","On the real site this message goes straight to {o}. You can edit it before sending."],
+  ok:["Compris","حسنًا","Got it"],
+  waMsg:["Bonjour, je suis intéressé(e) par votre {car} du {a} au {b} {m} ({d}), vue sur SafaRaha. Est-elle toujours disponible ?","السلام عليكم، أنا مهتم بسيارتك {car} من {a} إلى {b} {m} ({d})، رأيتها على صفا راحة. هل ما زالت متاحة؟","Hello, I'm interested in your {car} from {m} {a} to {b} ({d}), seen on SafaRaha. Is it still available?"],
+  toastContract:["Le modèle de contrat sera ajouté une fois validé par un avocat.","سيُضاف نموذج العقد بعد اعتماده من محامٍ.","The contract template will be added once a lawyer has approved it."],
+  toastReport:["Merci, l'équipe SafaRaha va vérifier cette annonce.","شكرًا، سيراجع فريق صفا راحة هذا الإعلان.","Thank you, the SafaRaha team will review this listing."],
+  signedAs:["Connecté en tant que","مسجَّل باسم","Signed in as"], planning:["Planning","الجدول","Planning"], addCar:["Ajouter un véhicule","إضافة سيارة","Add a car"],
+  stats:["Statistiques","الإحصائيات","Statistics"], profile:["Profil de l'agence","ملف الوكالة","Agency profile"], subscription:["Abonnement","الاشتراك","Subscription"],
+  planningT:["Planning — {m} 2026","الجدول — {m} 2026","Planning — {m} 2026"], duplicate:["Dupliquer une annonce","نسخ إعلان","Duplicate a listing"],
+  stCars:["Véhicules publiés","السيارات المنشورة","Cars listed"], stDays:["Jours loués ce mois-ci","أيام الإيجار هذا الشهر","Days booked this month"],
+  stViews:["Vues des annonces","مشاهدات الإعلانات","Listing views"], stClicks:["Clics WhatsApp","نقرات واتساب","WhatsApp clicks"],
+  hintD:["Cliquez sur une case pour bloquer ou libérer un jour. La recherche est mise à jour aussitôt.","انقر على خانة لحجز يوم أو إتاحته. يتم تحديث البحث فورًا.","Click a box to block or free a day. Search updates instantly."],
+  hintM:["Touchez un jour pour le bloquer ou le libérer.","المس يومًا لحجزه أو إتاحته.","Tap a day to block or free it."],
+  free:["Libre","متاح","Free"], booked:["Loué / bloqué","محجوز","Booked"], blockedA:["bloqué","محجوز","booked"], freeA:["libre","متاح","free"],
+  carCol:["Véhicule","السيارة","Car"],
+  stepN:["Étape {s} sur 4","الخطوة {s} من 4","Step {s} of 4"], prev:["Retour","رجوع","Back"], next:["Suivant","التالي","Next"], publish:["Publier l'annonce","نشر الإعلان","Publish listing"],
+  w1:["Quel véhicule ?","ما هي السيارة؟","Which car?"], brand:["Marque","الماركة","Make"], model:["Modèle","الموديل","Model"], year:["Année","سنة الصنع","Year"],
+  autoFill:["Rempli automatiquement d'après le modèle — modifiable","تُملأ تلقائيًا حسب الموديل — قابلة للتعديل","Filled in automatically from the model — editable"],
+  doors:["Portes","الأبواب","Doors"], gearT:["Boîte de vitesses","ناقل الحركة","Gearbox"], bt:["Bluetooth / CarPlay","بلوتوث / CarPlay","Bluetooth / CarPlay"],
+  cam:["Caméra de recul","كاميرا خلفية","Rear camera"], gps:["GPS","GPS","GPS"],
+  w2:["Photos","الصور","Photos"], w2P:["6 photos conseillées. Elles sont compressées automatiquement pour les connexions lentes.","ننصح بـ6 صور، ويتم ضغطها تلقائيًا لتناسب الاتصالات البطيئة.","6 photos recommended. They are compressed automatically for slow connections."],
+  shot:["Prendre une photo","التقاط صورة","Take a photo"],
+  slots:[["Face","Côté","Arrière","Intérieur","Sièges","Coffre"],["الأمام","الجانب","الخلف","الداخل","المقاعد","الصندوق"],["Front","Side","Rear","Interior","Seats","Boot"]],
+  w3:["Prix et conditions","السعر والشروط","Price and terms"], ppd:["Prix par jour ({c})","السعر في اليوم ({c})","Price per day ({c})"], yourPrice:["Votre prix","سعرك","Your price"],
+  depositC:["Caution ({c})","التأمين ({c})","Deposit ({c})"], amount:["Montant","المبلغ","Amount"],
+  licSince:["Permis depuis","رخصة القيادة منذ","Licence held for"], driverT:["Chauffeur","السائق","Driver"], custChoice:["Au choix du client","حسب اختيار العميل","Customer's choice"],
+  w4:["Lieu et publication","المكان والنشر","Location and publishing"], district:["Quartier de remise","حي التسليم","Pick-up area"],
+  recap:["Récapitulatif","الملخص","Summary"], recapL:["{n} photo(s) · 2 jours minimum · km illimité","{n} صور · يومان كحد أدنى · كيلومترات مفتوحة","{n} photo(s) · 2 days minimum · unlimited mileage"],
+  engage:["Je m'engage à utiliser le contrat de location SafaRaha pour chaque location de ce véhicule.","أتعهد باستخدام عقد إيجار صفا راحة في كل عملية إيجار لهذه السيارة.","I agree to use the SafaRaha rental contract for every rental of this car."],
+  toastEngage:["L'engagement à utiliser le contrat SafaRaha est obligatoire pour publier.","التعهد باستخدام عقد صفا راحة شرط للنشر.","Agreeing to use the SafaRaha contract is required to publish."],
+  toastPub:["Annonce publiée. Elle apparaît dans votre planning.","تم نشر الإعلان، وهو يظهر الآن في جدولك.","Listing published. It now appears in your planning."],
+  week:[["L","M","M","J","V","S","D"],["ن","ث","ر","خ","ج","س","ح"],["M","T","W","T","F","S","S"]]
+};
+const t = (k, v) => { let s = T[k] ? T[k][I()] : k; if (v) for (const x in v) s = s.split('{'+x+'}').join(v[x]); return s; };
+const days = n => lang==='ar' ? (n===1?'يوم واحد':n===2?'يومان':n<=10?n+' أيام':n+' يومًا') : lang==='en' ? n+(n>1?' days':' day') : n+(n>1?' jours':' jour');
+const years = n => lang==='ar' ? (n===1?'سنة':n===2?'سنتان':n+' سنوات') : lang==='en' ? n+(n>1?' years':' year') : n+(n>1?' ans':' an');
+const ageY = n => lang==='ar' ? n+' سنة' : lang==='en' ? n+' years' : n+' ans';
+const cars = n => lang==='ar' ? (n===0?'لا توجد سيارات متاحة':n===1?'سيارة واحدة متاحة':n===2?'سيارتان متاحتان':n<=10?n+' سيارات متاحة':n+' سيارة متاحة') : lang==='en' ? n+(n===1?' car available':' cars available') : n+(n>1?' véhicules libres':' véhicule libre');
+
+/* Données par pays */
+const COUNTRY = {
+  dz:{city:["Alger","الجزائر العاصمة","Algiers"], cur:["DA","دج","DZD"], month:["juillet","جويلية","July"], monthS:["juil.","جويلية","Jul"],
+      agency:["Hydra Auto","هيدرا أوتو","Hydra Auto"], district:["Ex. Hydra","مثال: حيدرة","e.g. Hydra"]},
+  eg:{city:["Le Caire","القاهرة","Cairo"], cur:["EGP","ج.م","EGP"], month:["juillet","يوليو","July"], monthS:["juil.","يوليو","Jul"],
+      agency:["Nile Drive","نايل درايف","Nile Drive"], district:["Ex. Maadi","مثال: المعادي","e.g. Maadi"]}
+};
+const C = k => COUNTRY[country][k][I()];
+const TRIP = {from:12, to:18, n:6};
+const dates = () => lang==='en' ? `${C('monthS')} ${TRIP.from} – ${TRIP.to}` : `${TRIP.from} – ${TRIP.to} ${C('monthS')}`;
+const price = () => `${t('pricePh')} ${C('cur')}`;
+
+const CARS = {
+  dz:[
+    {id:'tucson', name:'Hyundai Tucson 2021', type:'suv', auto:true, diesel:true, seats:5, owner:["Hydra Auto","هيدرا أوتو","Hydra Auto"], area:["Hydra, Alger","حيدرة، الجزائر العاصمة","Hydra, Algiers"], pro:true, driver:0, airport:true, km:true, min:2, booked:[3,4,5,6,22,23,24,25,26]},
+    {id:'symbol', name:'Renault Symbol 2022', type:'sedan', auto:false, diesel:false, seats:5, owner:["Karim B.","كريم ب.","Karim B."], area:["Kouba, Alger","القبة، الجزائر العاصمة","Kouba, Algiers"], pro:false, driver:0, airport:false, km:false, min:3, booked:[1,2,27,28]},
+    {id:'carnival', name:'Kia Carnival 2020', type:'seven', auto:true, diesel:true, seats:8, owner:["El Bahia Location","البهية للكراء","El Bahia Rentals"], area:["Bab Ezzouar, Alger","باب الزوار، الجزائر العاصمة","Bab Ezzouar, Algiers"], pro:true, driver:1, airport:true, km:true, min:2, booked:[8,9,10]},
+    {id:'logan', name:'Dacia Logan 2023', type:'sedan', auto:false, diesel:false, seats:5, owner:["Est Location","إيست لوكاسيون","Est Location"], area:["Bab Ezzouar, Alger","باب الزوار، الجزائر العاصمة","Bab Ezzouar, Algiers"], pro:true, driver:0, airport:false, km:true, min:1, booked:[]},
+    {id:'hilux', name:'Toyota Hilux 2022', type:'utility', auto:false, diesel:true, seats:5, owner:["Atlas Auto","أطلس أوتو","Atlas Auto"], area:["Chéraga, Alger","الشراقة، الجزائر العاصمة","Cheraga, Algiers"], pro:true, driver:2, airport:false, km:false, min:1, booked:[20,21]},
+    {id:'p208', name:'Peugeot 208 2023', type:'city', auto:true, diesel:false, seats:5, owner:["Samia K.","سامية ك.","Samia K."], area:["El Biar, Alger","الأبيار، الجزائر العاصمة","El Biar, Algiers"], pro:false, driver:0, airport:true, km:true, min:2, booked:[14,15]}
+  ],
+  eg:[
+    {id:'elantra', name:'Hyundai Elantra 2022', type:'sedan', auto:true, diesel:false, seats:5, owner:["Nile Drive","نايل درايف","Nile Drive"], area:["Nasr City, Le Caire","مدينة نصر، القاهرة","Nasr City, Cairo"], pro:true, driver:0, airport:true, km:true, min:2, booked:[3,4,5,6,22,23,24,25,26]},
+    {id:'corolla', name:'Toyota Corolla 2023', type:'sedan', auto:true, diesel:false, seats:5, owner:["Ahmed S.","أحمد س.","Ahmed S."], area:["Maadi, Le Caire","المعادي، القاهرة","Maadi, Cairo"], pro:false, driver:0, airport:false, km:false, min:3, booked:[1,2,27,28]},
+    {id:'xpander', name:'Mitsubishi Xpander 2022', type:'seven', auto:true, diesel:false, seats:7, owner:["Cairo Family Rent","كايرو فاميلي رنت","Cairo Family Rent"], area:["Héliopolis, Le Caire","مصر الجديدة، القاهرة","Heliopolis, Cairo"], pro:true, driver:1, airport:true, km:true, min:2, booked:[8,9,10]},
+    {id:'sunny', name:'Nissan Sunny 2021', type:'sedan', auto:true, diesel:false, seats:5, owner:["Pyramids Cars","بيراميدز كارز","Pyramids Cars"], area:["Gizeh","الجيزة","Giza"], pro:true, driver:0, airport:false, km:true, min:1, booked:[]},
+    {id:'hiace', name:'Toyota HiAce 2021', type:'utility', auto:false, diesel:true, seats:14, owner:["Nile Drive","نايل درايف","Nile Drive"], area:["Nasr City, Le Caire","مدينة نصر، القاهرة","Nasr City, Cairo"], pro:true, driver:2, airport:true, km:false, min:1, booked:[20,21]},
+    {id:'sportage', name:'Kia Sportage 2023', type:'suv', auto:true, diesel:false, seats:5, owner:["Mona K.","منى ك.","Mona K."], area:["Nouveau Caire","القاهرة الجديدة","New Cairo"], pro:false, driver:0, airport:true, km:true, min:2, booked:[14,15]}
+  ]
+};
+const FLEET = {
+  dz:[{name:'Hyundai Tucson 2021',booked:[3,4,5,6,22,23,24,25,26]},{name:'Renault Symbol 2022',booked:[10,11,12,13,14]},{name:'Kia Carnival 2020',booked:[1,2,15,16,17,18,19,20]},{name:'Dacia Logan 2023',booked:[]},{name:'Peugeot 208 2023',booked:[7,8,9,28,29,30,31]}],
+  eg:[{name:'Hyundai Elantra 2022',booked:[3,4,5,6,22,23,24,25,26]},{name:'Toyota HiAce 2021',booked:[10,11,12,13,14]},{name:'Mitsubishi Xpander 2022',booked:[1,2,15,16,17,18,19,20]},{name:'Nissan Sunny 2021',booked:[]},{name:'Toyota Corolla 2023',booked:[7,8,9,28,29,30,31]}]
+};
+const TYPES = ['city','sedan','estate','suv','seven','utility'];
 const filt = {type:'', auto:false, driver:false, airport:false, km:false, pro:true, part:true};
-let photo = 0, step = 1;
+let current = 0, photo = 0, step = 1;
 
-/* ---------- Outils ---------- */
+/* =========================================================
+   Outils
+   ========================================================= */
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const carSvg = (w=60) => `<svg width="${w}" height="${Math.round(w*0.57)}" viewBox="0 0 56 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22v-5l6-8h24l10 8h6a2 2 0 0 1 2 2v3"/><circle cx="14" cy="24" r="4"/><circle cx="42" cy="24" r="4"/><path d="M18 24h20"/></svg>`;
+const L = a => a[I()];
+const carSvg = (w=60) => `<svg width="${w}" height="${Math.round(w*0.57)}" viewBox="0 0 56 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="flip"><path d="M4 22v-5l6-8h24l10 8h6a2 2 0 0 1 2 2v3"/><circle cx="14" cy="24" r="4"/><circle cx="42" cy="24" r="4"/><path d="M18 24h20"/></svg>`;
 const icon = {
   search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
   shield:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>',
   doc:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 14l2 2 4-4"/></svg>',
   chat:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z"/></svg>',
-  left:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
-  right:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>',
+  left:'<svg class="flip" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
+  right:'<svg class="flip" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>',
   filter:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>'
 };
-function toast(msg){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3200)}
+function toast(msg){const x=document.createElement('div');x.className='toast';x.setAttribute('role','status');x.textContent=msg;document.body.appendChild(x);setTimeout(()=>x.remove(),3200)}
+const specs = c => `${c.auto?t('auto'):t('manual')} · ${c.diesel?t('diesel'):t('petrol')} · ${c.seats} ${t('seats')}`;
+const extra = c => [c.km?t('kmFree'):'', c.airport?t('airport'):'', c.driver===2?t('driverOnly'):c.driver===1?t('driverOpt'):'', c.min>1?t('minN',{d:days(c.min)}):''].filter(Boolean).slice(0,2).join(' · ');
 function carCard(c){
   return `<a class="car" href="#/fiche/${c.id}">
-    <div class="photo">${carSvg()}<span>Photos du véhicule</span><span class="badge">${c.kind}</span></div>
-    <div class="body"><span class="name">${esc(c.name)}</span>
-      <span class="specs">${c.gear} · ${c.fuel} · ${c.seats} places</span>
-      <span class="extra">${esc(c.extra)}</span>
-      <div class="foot"><span class="owner">${esc(c.owner)} · vérifié</span><span class="price"><b>${PRIX}</b><small> /jour</small></span></div>
+    <div class="photo">${carSvg()}<span>${t('photos')}</span><span class="badge">${c.pro?t('pro'):t('part')}</span></div>
+    <div class="body"><span class="name"><bdi>${esc(c.name)}</bdi></span>
+      <span class="specs">${specs(c)}</span>
+      <span class="extra">${extra(c)}</span>
+      <div class="foot"><span class="owner">${esc(L(c.owner))} · ${t('verified')}</span><span class="price"><b>${price()}</b><small>${t('perDay')}</small></span></div>
     </div></a>`;
 }
-const isFree = c => !c.booked.some(d => d>=TRIP.from && d<=TRIP.to) && c.min <= TRIP.days;
+const list = () => CARS[country];
+const isFree = c => !c.booked.some(d => d>=TRIP.from && d<=TRIP.to) && c.min <= TRIP.n;
 
-/* ---------- Pages ---------- */
-function home(){
+/* En-tête et sélecteurs */
+function header(){
+  $('#demo').textContent = t('demo');
+  const h = location.hash.replace(/^#\/?/,'').split('/')[0];
+  $('#nav').innerHTML = `
+    <a href="#/resultats" class="hide-s ${h==='resultats'?'on':''}">${t('navRent')}</a>
+    <select class="switch" id="sw-country" aria-label="${t('countryLabel')}"><option value="dz" ${country==='dz'?'selected':''}>${t('dz')}</option><option value="eg" ${country==='eg'?'selected':''}>${t('eg')}</option></select>
+    <select class="switch" id="sw-lang" aria-label="${t('langLabel')}"><option value="fr" ${lang==='fr'?'selected':''}>Français</option><option value="ar" ${lang==='ar'?'selected':''}>العربية</option><option value="en" ${lang==='en'?'selected':''}>English</option></select>
+    <a href="#/loueur" class="btn-out ${h==='loueur'?'on':''}">${t('navPro')}</a>`;
+  $('#sw-lang').onchange = e => setPrefs(e.target.value, country);
+  $('#sw-country').onchange = e => setPrefs(lang, e.target.value);
+}
+function setPrefs(l, c){
+  const changedCountry = c !== country;
+  lang = l; country = c;
+  try { localStorage.setItem('safaraha', JSON.stringify({lang, country})); } catch(e) {}
+  const q = new URLSearchParams(location.search); q.set('lang', lang); q.set('pays', country);
+  try { history.replaceState(null, '', location.pathname + '?' + q.toString() + location.hash); } catch(e) {}
+  if (changedCountry) { current = 0; if (location.hash.startsWith('#/fiche')) { location.hash = '#/resultats'; return; } }
+  route();
+}
+
+/* =========================================================
+   Pages
+   ========================================================= */
+function homePage(){
+  const typeOpts = TYPES.map(k=>`<option value="${k}">${t('t_'+k)}</option>`).join('');
   return `<div class="wrap">
   <section class="hero">
-    <h1>Louez une voiture en toute sérénité</h1>
-    <p>Des loueurs vérifiés à Alger, des disponibilités à jour et un contrat standard pour chaque location.</p>
+    <h1>${t('heroT')}</h1>
+    <p>${t('heroP',{city:C('city')})}</p>
     <form class="search" id="search">
-      <label class="field">Ville<select><option>Alger</option></select></label>
-      <label class="field">Départ<input type="date" value="2026-07-12"></label>
-      <label class="field">Retour<input type="date" value="2026-07-18"></label>
-      <label class="field">Type de véhicule<select id="s-type"><option value="">Tous les types</option>${TYPES.map(t=>`<option>${t}</option>`).join('')}</select></label>
-      <button class="btn" type="submit">${icon.search} Rechercher</button>
+      <label class="field">${t('city')}<select><option>${C('city')}</option></select></label>
+      <label class="field">${t('from')}<input type="date" value="2026-07-12"></label>
+      <label class="field">${t('to')}<input type="date" value="2026-07-18"></label>
+      <label class="field">${t('type')}<select id="s-type"><option value="">${t('allTypes')}</option>${typeOpts}</select></label>
+      <button class="btn" type="submit">${icon.search} ${t('search')}</button>
     </form>
   </section>
-  <section class="section"><h2>Par catégorie</h2>
-    <div class="cats">${TYPES.map(t=>`<a class="chip" href="#/resultats" data-type="${t}">${t}</a>`).join('')}<a class="chip" href="#/resultats" data-driver="1">Avec chauffeur</a></div>
+  <section class="section"><h2>${t('byCat')}</h2>
+    <div class="cats">${TYPES.map(k=>`<a class="chip" href="#/resultats" data-type="${k}">${t('t_'+k)}</a>`).join('')}<a class="chip" href="#/resultats" data-driver="1">${t('withDriver')}</a></div>
   </section>
   <section class="section"><div class="trust">
-    <div class="card"><span class="ico">${icon.shield}</span><div><h3>Loueurs vérifiés</h3><p>Agences et particuliers contrôlés avant de publier, avec un badge Pro ou Particulier.</p></div></div>
-    <div class="card"><span class="ico">${icon.doc}</span><div><h3>Contrat SafaRaha</h3><p>Le même contrat équilibré pour toutes les locations, prérempli avec les conditions de l'annonce.</p></div></div>
-    <div class="card"><span class="ico">${icon.chat}</span><div><h3>Contact direct</h3><p>Vous échangez avec le loueur sur WhatsApp, sans intermédiaire.</p></div></div>
+    <div class="card"><span class="ico">${icon.shield}</span><div><h3>${t('tr1T')}</h3><p>${t('tr1')}</p></div></div>
+    <div class="card"><span class="ico">${icon.doc}</span><div><h3>${t('tr2T')}</h3><p>${t('tr2')}</p></div></div>
+    <div class="card"><span class="ico">${icon.chat}</span><div><h3>${t('tr3T')}</h3><p>${t('tr3')}</p></div></div>
   </div></section>
-  <section class="section"><h2>Disponibles du 12 au 18 juillet à Alger</h2>
-    <div class="grid">${CARS.filter(isFree).slice(0,4).map(carCard).join('')}</div>
+  <section class="section"><h2>${t('avail',{a:TRIP.from,b:TRIP.to,m:C('month'),city:C('city')})}</h2>
+    <div class="grid">${list().filter(isFree).slice(0,4).map(carCard).join('')}</div>
   </section>
-  <section class="band"><div><h2>Vous louez des voitures ?</h2><p>Publiez vos véhicules depuis votre téléphone, gérez vos disponibilités en deux clics et recevez des clients sur WhatsApp. Nous nous occupons de la publicité.</p></div>
-    <a class="btn" href="#/loueur">Découvrir l'espace loueur</a></section>
-  <footer class="foot"><span>© SafaRaha — maquette</span><a href="#/" style="color:inherit">Conditions d'utilisation</a><a href="#/" style="color:inherit">Confidentialité</a><a href="#/" style="color:inherit">Modèle de contrat</a></footer>
+  <section class="band"><div><h2>${t('bandT')}</h2><p>${t('bandP')}</p></div>
+    <a class="btn" href="#/loueur">${t('bandBtn')}</a></section>
+  <footer class="foot"><span>${t('foot')}</span><a href="#/" style="color:inherit">${t('terms')}</a><a href="#/" style="color:inherit">${t('privacy')}</a><a href="#/" style="color:inherit">${t('contractModel')}</a></footer>
   </div>`;
 }
 function homeBind(){
@@ -300,164 +456,167 @@ function homeBind(){
   document.querySelectorAll('.cats .chip').forEach(a => a.addEventListener('click', () => {filt.type = a.dataset.type || ''; filt.driver = !!a.dataset.driver;}));
 }
 
-function results(){
+function resultsPage(){
   return `<div class="wrap">
   <div class="bar"><h1 id="r-title"></h1>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <button class="chip open-filters" id="open-f" type="button">${icon.filter}&nbsp;Filtres</button>
-      <label class="field" style="flex-direction:row;align-items:center;gap:8px">Trier<select style="height:44px;width:auto"><option>Prix croissant</option><option>Prix décroissant</option><option>Plus récents</option></select></label>
+      <button class="chip open-filters" id="open-f" type="button">${icon.filter}&nbsp;${t('filters')}</button>
+      <label class="field" style="flex-direction:row;align-items:center;gap:8px">${t('sort')}<select style="height:44px;width:auto"><option>${t('s1')}</option><option>${t('s2')}</option><option>${t('s3')}</option></select></label>
     </div></div>
   <div class="results">
-    <aside class="card filters" id="filters" aria-label="Filtres">
-      <div style="display:flex;justify-content:space-between;align-items:center"><h2>Filtres</h2><button class="chip open-filters" id="close-f" type="button" aria-label="Fermer les filtres">Fermer</button></div>
-      <label class="field">Type de véhicule<select id="f-type"><option value="">Tous les types</option>${TYPES.map(t=>`<option ${filt.type===t?'selected':''}>${t}</option>`).join('')}</select></label>
-      <fieldset><legend>Options</legend>
-        <label class="check"><input type="checkbox" data-f="auto" ${filt.auto?'checked':''}> Boîte automatique</label>
-        <label class="check"><input type="checkbox" data-f="driver" ${filt.driver?'checked':''}> Avec chauffeur</label>
-        <label class="check"><input type="checkbox" data-f="airport" ${filt.airport?'checked':''}> Livraison à l'aéroport</label>
-        <label class="check"><input type="checkbox" data-f="km" ${filt.km?'checked':''}> Kilométrage illimité</label>
+    <aside class="card filters" id="filters" aria-label="${t('filters')}">
+      <div style="display:flex;justify-content:space-between;align-items:center"><h2>${t('filters')}</h2><button class="chip open-filters" id="close-f" type="button">${t('close')}</button></div>
+      <label class="field">${t('type')}<select id="f-type"><option value="">${t('allTypes')}</option>${TYPES.map(k=>`<option value="${k}" ${filt.type===k?'selected':''}>${t('t_'+k)}</option>`).join('')}</select></label>
+      <fieldset><legend>${t('options')}</legend>
+        <label class="check"><input type="checkbox" data-f="auto" ${filt.auto?'checked':''}> ${t('fAuto')}</label>
+        <label class="check"><input type="checkbox" data-f="driver" ${filt.driver?'checked':''}> ${t('withDriver')}</label>
+        <label class="check"><input type="checkbox" data-f="airport" ${filt.airport?'checked':''}> ${t('fAirport')}</label>
+        <label class="check"><input type="checkbox" data-f="km" ${filt.km?'checked':''}> ${t('fKm')}</label>
       </fieldset>
-      <fieldset><legend>Loueur</legend>
-        <label class="check"><input type="checkbox" data-f="pro" ${filt.pro?'checked':''}> Professionnels</label>
-        <label class="check"><input type="checkbox" data-f="part" ${filt.part?'checked':''}> Particuliers</label>
+      <fieldset><legend>${t('owner')}</legend>
+        <label class="check"><input type="checkbox" data-f="pro" ${filt.pro?'checked':''}> ${t('pros')}</label>
+        <label class="check"><input type="checkbox" data-f="part" ${filt.part?'checked':''}> ${t('parts')}</label>
       </fieldset>
       <button class="btn open-filters" id="apply-f" type="button" style="width:100%"></button>
     </aside>
-    <div class="list"><div class="grid" id="r-grid"></div><p class="card empty" id="r-empty" hidden>Aucun véhicule ne correspond à ces filtres sur ces dates. Essayez d'en retirer un.</p></div>
+    <div class="list"><div class="grid" id="r-grid"></div><p class="card empty" id="r-empty" hidden>${t('empty')}</p></div>
   </div></div>`;
 }
 function resultsBind(){
   const draw = () => {
-    const list = CARS.filter(isFree).filter(c => (!filt.type || c.type===filt.type) && (!filt.auto||c.auto) && (!filt.driver||c.driver) && (!filt.airport||c.airport) && (!filt.km||c.km) && ((filt.pro && c.kind==='Pro') || (filt.part && c.kind==='Particulier')));
-    $('#r-grid').innerHTML = list.map(carCard).join('');
-    $('#r-empty').hidden = list.length>0;
-    const n = list.length + (list.length>1?' véhicules libres':' véhicule libre');
-    $('#r-title').textContent = `${n} à Alger · ${TRIP.label}${filt.type?' · '+filt.type:''}`;
-    $('#apply-f').textContent = `Voir ${list.length>1?'les '+list.length+' véhicules':list.length+' véhicule'}`;
+    const l = list().filter(isFree).filter(c => (!filt.type || c.type===filt.type) && (!filt.auto||c.auto) && (!filt.driver||c.driver>0) && (!filt.airport||c.airport) && (!filt.km||c.km) && ((filt.pro && c.pro) || (filt.part && !c.pro)));
+    $('#r-grid').innerHTML = l.map(carCard).join('');
+    $('#r-empty').hidden = l.length>0;
+    $('#r-title').textContent = t('resT',{count:cars(l.length), city:C('city'), dates:dates()}) + (filt.type?' · '+t('t_'+filt.type):'');
+    $('#apply-f').textContent = t('seeN',{n:l.length});
   };
   document.querySelectorAll('[data-f]').forEach(i => i.addEventListener('change', () => {filt[i.dataset.f]=i.checked; draw();}));
   $('#f-type').addEventListener('change', e => {filt.type=e.target.value; draw();});
-  const open = () => {$('#filters').classList.add('open'); const v=document.createElement('div'); v.className='veil'; v.id='veil'; v.onclick=close; document.body.appendChild(v);};
   const close = () => {$('#filters').classList.remove('open'); const v=$('#veil'); if(v) v.remove();};
+  const open = () => {$('#filters').classList.add('open'); const v=document.createElement('div'); v.className='veil'; v.id='veil'; v.onclick=close; document.body.appendChild(v);};
   $('#open-f').onclick=open; $('#close-f').onclick=close; $('#apply-f').onclick=close;
   draw();
 }
 
-const PHOTOS = ['Vue de face','Vue de côté','Vue arrière','Intérieur avant','Sièges arrière','Coffre'];
 function calendar(c){
-  let h = '<div class="head"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div><div class="days"><span></span><span></span>';
+  let h = `<div class="head">${T.week[I()].map(d=>`<span>${d}</span>`).join('')}</div><div class="days"><span></span><span></span>`;
   for(let d=1; d<=31; d++){
     const b = c.booked.includes(d), m = d>=TRIP.from && d<=TRIP.to;
     h += `<span class="day ${b&&m?'clash':b?'booked':m?'mine':''}">${d}</span>`;
   }
   return h + '</div>';
 }
-function detail(id){
-  const c = CARS.find(x=>x.id===id) || CARS[0];
+function detailPage(id){
+  const c = list().find(x=>x.id===id) || list()[0];
   const free = isFree(c);
-  const book = `<p class="price"><b style="font-size:24px">${PRIX}</b><small> /jour · ${c.min} jour${c.min>1?'s':''} minimum</small></p>
-      <p style="font-size:14px;color:var(--muted)">${TRIP.label} · ${TRIP.days} jours</p>
-      <p class="total">Total : [TOTAL] DA</p>
-      ${free?'':'<p style="color:var(--cta-dark);font-size:14px;font-weight:500">Déjà loué sur une partie de vos dates.</p>'}
-      <button class="wa" type="button" data-wa>${icon.chat} Contacter sur WhatsApp</button>`;
+  const ph = T.ph[I()];
+  const book = `<p class="price"><b style="font-size:24px">${price()}</b><small>${t('perDay')} · ${t('minN',{d:days(c.min)})}</small></p>
+      <p style="font-size:14px;color:var(--muted)">${dates()} · ${days(TRIP.n)}</p>
+      <p class="total">${t('total',{v:t('totalPh')+' '+C('cur')})}</p>
+      ${free?'':`<p style="color:var(--cta-dark);font-size:14px;font-weight:500">${t('clash')}</p>`}
+      <button class="wa" type="button" data-wa>${icon.chat} ${t('wa')}</button>`;
+  const initials = L(c.owner).replace(/\./g,'').split(' ').map(w=>w[0]).slice(0,2).join('');
   return `<div class="wrap">
-  <a class="back" href="#/resultats">${icon.left} Retour aux résultats</a>
+  <a class="back" href="#/resultats">${icon.left} ${t('back')}</a>
   <div class="detail">
     <div class="main">
-      <div class="photo gallery">${carSvg(80)}<span id="ph-label">Photo 1 — ${PHOTOS[0]}</span>
-        <button class="nav-btn prev" type="button" aria-label="Photo précédente" data-ph="-1">${icon.left}</button>
-        <button class="nav-btn next" type="button" aria-label="Photo suivante" data-ph="1">${icon.right}</button>
-        <span class="count" id="ph-count">1 / ${PHOTOS.length}</span></div>
-      <div class="title"><span class="badge">${c.kind}</span> <span class="badge">Loueur vérifié</span>
-        <h1>${esc(c.name)}</h1><p class="sub">${c.type} · ${c.gear} · ${c.fuel} · ${c.seats} places</p></div>
-      <div class="card owner-card"><span class="avatar">${esc(c.owner.split(' ').map(w=>w[0]).slice(0,2).join(''))}</span>
-        <div style="flex:1"><b>${esc(c.owner)}</b><p style="font-size:13px;color:var(--muted)">${esc(c.area)}</p></div></div>
-      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">Caractéristiques</h2>
-        <div class="specgrid"><div><small>Catégorie</small><span>${c.type}</span></div><div><small>Boîte</small><span>${c.gear}</span></div><div><small>Carburant</small><span>${c.fuel}</span></div><div><small>Places</small><span>${c.seats}</span></div><div><small>Climatisation</small><span>Oui</span></div><div><small>Équipements</small><span>Bluetooth, caméra de recul</span></div></div></section>
-      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">Conditions de location</h2>
+      <div class="photo gallery">${carSvg(80)}<span id="ph-label">${t('photoN',{i:1,l:ph[0]})}</span>
+        <button class="nav-btn prev" type="button" aria-label="${t('prevPh')}" data-ph="-1">${icon.left}</button>
+        <button class="nav-btn next" type="button" aria-label="${t('nextPh')}" data-ph="1">${icon.right}</button>
+        <span class="count" id="ph-count">1 / ${ph.length}</span></div>
+      <div class="title"><span class="badge">${c.pro?t('pro'):t('part')}</span> <span class="badge">${t('verifiedOwner')}</span>
+        <h1><bdi>${esc(c.name)}</bdi></h1><p class="sub">${t('t_'+c.type)} · ${specs(c)}</p></div>
+      <div class="card owner-card"><span class="avatar">${esc(initials)}</span>
+        <div style="flex:1"><b>${esc(L(c.owner))}</b><p style="font-size:13px;color:var(--muted)">${esc(L(c.area))}</p></div></div>
+      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">${t('specsT')}</h2>
+        <div class="specgrid"><div><small>${t('category')}</small><span>${t('t_'+c.type)}</span></div><div><small>${t('gearbox')}</small><span>${c.auto?t('auto'):t('manual')}</span></div><div><small>${t('fuel')}</small><span>${c.diesel?t('diesel'):t('petrol')}</span></div><div><small>${t('seatsT')}</small><span>${c.seats}</span></div><div><small>${t('ac')}</small><span>${t('yes')}</span></div><div><small>${t('equip')}</small><span>${t('equipVal')}</span></div></div></section>
+      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">${t('condT')}</h2>
         <div class="card rows">
-          <div><span>Durée minimale</span><span>${c.min} jour${c.min>1?'s':''}</span></div>
-          <div><span>Caution</span><span>[MONTANT] DA</span></div>
-          <div><span>Kilométrage</span><span>${c.km?'Illimité':'200 km / jour'}</span></div>
-          <div><span>Âge minimum</span><span>25 ans</span></div>
-          <div><span>Permis</span><span>3 ans minimum</span></div>
-          <div><span>Carburant</span><span>Rendu au même niveau</span></div>
-          <div><span>Annulation</span><span>Gratuite jusqu'à 48 h avant</span></div>
+          <div><span>${t('minDur')}</span><span>${days(c.min)}</span></div>
+          <div><span>${t('deposit')}</span><span>${t('amountPh')} ${C('cur')}</span></div>
+          <div><span>${t('mileage')}</span><span>${c.km?t('unlimited'):t('km200')}</span></div>
+          <div><span>${t('minAge')}</span><span>${ageY(25)}</span></div>
+          <div><span>${t('licence')}</span><span>${t('lic3')}</span></div>
+          <div><span>${t('fuel')}</span><span>${t('sameLevel')}</span></div>
+          <div><span>${t('cancel')}</span><span>${t('c48')}</span></div>
         </div></section>
-      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">Services</h2>
-        <div class="tags">${c.airport?'<span>Livraison aéroport</span>':''}<span>Livraison à domicile</span><span>${c.driver?'Avec chauffeur':'Sans chauffeur'}</span><span>Siège bébé</span></div></section>
-      <section><h2 style="font-size:18px;font-weight:600">Disponibilités — juillet 2026</h2>
-        <p style="font-size:13px;color:var(--muted);margin:4px 0 10px">Vos dates sont en vert. Les jours barrés sont déjà loués.</p>
+      <section><h2 style="font-size:18px;font-weight:600;margin-bottom:10px">${t('servicesT')}</h2>
+        <div class="tags">${c.airport?`<span>${t('airport')}</span>`:''}<span>${t('home')}</span><span>${c.driver?t('withDriver'):t('withoutDriver')}</span><span>${t('babySeat')}</span></div></section>
+      <section><h2 style="font-size:18px;font-weight:600">${t('availT',{m:C('month')})}</h2>
+        <p style="font-size:13px;color:var(--muted);margin:4px 0 10px">${t('availH')}</p>
         <div class="card cal">${calendar(c)}</div></section>
-      <div class="contract"><span style="color:var(--teal)">${icon.doc}</span><div><b>Location couverte par le contrat SafaRaha</b>
-        <p>Contrat standard équilibré, prérempli avec les conditions ci-dessus. Exigez-le à la remise des clés.</p>
-        <a href="#" data-contract style="display:inline-flex;min-height:44px;align-items:center;font-size:14px;font-weight:600">Voir le modèle de contrat</a></div></div>
-      <a href="#" data-report style="font-size:13px;color:var(--muted);align-self:center;min-height:44px;display:flex;align-items:center">Signaler cette annonce</a>
+      <div class="contract"><span style="color:var(--teal)">${icon.doc}</span><div><b>${t('contractT')}</b>
+        <p>${t('contractP')}</p>
+        <a href="#" data-contract style="display:inline-flex;min-height:44px;align-items:center;font-size:14px;font-weight:600">${t('seeContract')}</a></div></div>
+      <a href="#" data-report style="font-size:13px;color:var(--muted);align-self:center;min-height:44px;display:flex;align-items:center">${t('report')}</a>
     </div>
     <aside><div class="card book">${book}</div></aside>
   </div></div>
-  <div class="mbar"><div style="flex:1"><b>[TOTAL] DA</b><p style="font-size:12px;color:var(--muted)">${TRIP.label} · ${TRIP.days} jours</p></div><button class="wa" type="button" data-wa>${icon.chat} WhatsApp</button></div>`;
+  <div class="mbar"><div style="flex:1"><b>${t('totalPh')} ${C('cur')}</b><p style="font-size:12px;color:var(--muted)">${dates()} · ${days(TRIP.n)}</p></div><button class="wa" type="button" data-wa>${icon.chat} ${t('waShort')}</button></div>`;
 }
 function detailBind(id){
-  const c = CARS.find(x=>x.id===id) || CARS[0];
+  const c = list().find(x=>x.id===id) || list()[0];
+  const ph = T.ph[I()];
   photo = 0;
   document.querySelectorAll('[data-ph]').forEach(b => b.onclick = () => {
-    photo = (photo + Number(b.dataset.ph) + PHOTOS.length) % PHOTOS.length;
-    $('#ph-label').textContent = `Photo ${photo+1} — ${PHOTOS[photo]}`;
-    $('#ph-count').textContent = `${photo+1} / ${PHOTOS.length}`;
+    photo = (photo + Number(b.dataset.ph) + ph.length) % ph.length;
+    $('#ph-label').textContent = t('photoN',{i:photo+1,l:ph[photo]});
+    $('#ph-count').textContent = `${photo+1} / ${ph.length}`;
   });
   document.querySelectorAll('[data-wa]').forEach(b => b.onclick = () => {
-    const msg = `Bonjour, je suis intéressé(e) par votre ${c.name} du 12 au 18 juillet (6 jours), vue sur SafaRaha. Est-elle toujours disponible ?`;
-    $('#layer').innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="Message WhatsApp"><div class="box">
-      <h2 style="font-size:18px;font-weight:600">WhatsApp s'ouvre avec ce message</h2>
-      <p style="font-size:14px;color:var(--muted)">Dans le vrai site, ce message est envoyé directement à ${esc(c.owner)}. Il peut le modifier avant l'envoi.</p>
+    const msg = t('waMsg',{car:c.name, a:TRIP.from, b:TRIP.to, m:C('month'), d:days(TRIP.n)});
+    $('#layer').innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="${t('waT')}"><div class="box">
+      <h2 style="font-size:18px;font-weight:600">${t('waT')}</h2>
+      <p style="font-size:14px;color:var(--muted)">${t('waP',{o:esc(L(c.owner))})}</p>
       <div class="bubble">${esc(msg)}</div>
-      <button class="btn teal" type="button" id="m-close">Compris</button></div></div>`;
+      <button class="btn teal" type="button" id="m-close">${t('ok')}</button></div></div>`;
     $('#m-close').focus(); $('#m-close').onclick = () => $('#layer').innerHTML = '';
   });
-  document.querySelector('[data-contract]').onclick = e => {e.preventDefault(); toast('Le modèle de contrat sera ajouté une fois validé par un avocat.');};
-  document.querySelector('[data-report]').onclick = e => {e.preventDefault(); toast('Merci, l’équipe SafaRaha va vérifier cette annonce.');};
+  document.querySelector('[data-contract]').onclick = e => {e.preventDefault(); toast(t('toastContract'));};
+  document.querySelector('[data-report]').onclick = e => {e.preventDefault(); toast(t('toastReport'));};
 }
 
-/* ---------- Espace loueur ---------- */
+/* Espace loueur */
 function proShell(active, inner){
-  const l = (h,t,k) => `<a href="${h}" class="${active===k?'on':''}">${t}</a>`;
-  return `<div class="pro"><nav class="side" aria-label="Espace loueur">
-    <div class="who">Connecté en tant que<b>Agence Hydra Auto</b></div>
-    ${l('#/loueur','Planning','planning')}${l('#/loueur/ajout','Ajouter un véhicule','ajout')}${l('#/loueur','Statistiques','stats')}${l('#/loueur','Profil de l’agence','profil')}${l('#/loueur','Abonnement','abo')}
+  const l = (h,k,key) => `<a href="${h}" class="${active===k?'on':''}">${t(key)}</a>`;
+  return `<div class="pro"><nav class="side" aria-label="${t('navPro')}">
+    <div class="who">${t('signedAs')}<b>${C('agency')}</b></div>
+    ${l('#/loueur','planning','planning')}${l('#/loueur/ajout','ajout','addCar')}${l('#/loueur','stats','stats')}${l('#/loueur','profil','profile')}${l('#/loueur','abo','subscription')}
   </nav><main>${inner}</main></div>`;
 }
-function planning(){
+function planningPage(){
   return proShell('planning', `
-  <div class="phead"><div><p style="font-size:14px;color:var(--muted)">Agence Hydra Auto</p><h1>Planning — juillet 2026</h1></div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn ghost" href="#/loueur/ajout" style="min-height:46px">Dupliquer une annonce</a><a class="btn" href="#/loueur/ajout" style="min-height:46px">Ajouter un véhicule</a></div></div>
-  <div class="stats"><div class="card"><small>Véhicules publiés</small><b id="st-n"></b></div><div class="card"><small>Jours loués ce mois-ci</small><b id="st-d"></b></div><div class="card"><small>Vues des annonces</small><b>[—]</b></div><div class="card"><small>Clics WhatsApp</small><b>[—]</b></div></div>
+  <div class="phead"><div><p style="font-size:14px;color:var(--muted)">${C('agency')}</p><h1>${t('planningT',{m:C('month')})}</h1></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn ghost" href="#/loueur/ajout" style="min-height:46px">${t('duplicate')}</a><a class="btn" href="#/loueur/ajout" style="min-height:46px">${t('addCar')}</a></div></div>
+  <div class="stats"><div class="card"><small>${t('stCars')}</small><b id="st-n"></b></div><div class="card"><small>${t('stDays')}</small><b id="st-d"></b></div><div class="card"><small>${t('stViews')}</small><b>[—]</b></div><div class="card"><small>${t('stClicks')}</small><b>[—]</b></div></div>
   <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px">
     <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
-      <p style="font-size:14px;color:var(--muted)" class="only-d">Cliquez sur une case pour bloquer ou libérer un jour. La recherche est mise à jour aussitôt.</p>
-      <p style="font-size:14px;color:var(--muted)" class="only-m">Touchez un jour pour le bloquer ou le libérer.</p>
-      <div class="legend"><span><i style="background:#F5F5F4;border:1px solid var(--line)"></i>Libre</span><span><i style="background:var(--booked)"></i>Loué / bloqué</span></div></div>
+      <p style="font-size:14px;color:var(--muted)" class="only-d">${t('hintD')}</p>
+      <p style="font-size:14px;color:var(--muted)" class="only-m">${t('hintM')}</p>
+      <div class="legend"><span><i style="background:#F5F5F4;border:1px solid var(--line)"></i>${t('free')}</span><span><i style="background:var(--booked)"></i>${t('booked')}</span></div></div>
     <div class="only-d fleet" id="fleet"></div>
-    <div class="only-m"><div class="cats" id="veh" style="margin-bottom:12px"></div><div class="cal"><div class="head"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div><div class="days" id="mcal"></div></div></div>
+    <div class="only-m"><div class="cats" id="veh" style="margin-bottom:12px"></div><div class="cal"><div class="head">${T.week[I()].map(d=>`<span>${d}</span>`).join('')}</div><div class="days" id="mcal"></div></div></div>
   </section>`);
 }
 function planningBind(){
+  const fleet = FLEET[country];
+  if (current >= fleet.length) current = 0;
   const toggle = (v,d) => {const b=fleet[v].booked; const k=b.indexOf(d); k>=0?b.splice(k,1):b.push(d); draw();};
   const draw = () => {
     $('#st-n').textContent = fleet.length;
     $('#st-d').textContent = fleet.reduce((s,f)=>s+f.booked.length,0);
-    let t = '<table><thead><tr><th class="v">Véhicule</th>';
-    for(let d=1; d<=31; d++) t += `<th>${d}</th>`;
-    t += '</tr></thead><tbody>';
+    let h = `<table><thead><tr><th class="v">${t('carCol')}</th>`;
+    for(let d=1; d<=31; d++) h += `<th>${d}</th>`;
+    h += '</tr></thead><tbody>';
     fleet.forEach((f,v) => {
-      t += `<tr><th class="v" scope="row">${esc(f.name)}</th>`;
-      for(let d=1; d<=31; d++){const on=f.booked.includes(d); t += `<td><button type="button" class="cell ${on?'on':''}" data-v="${v}" data-d="${d}" aria-pressed="${on}" aria-label="${esc(f.name)}, ${d} juillet, ${on?'bloqué':'libre'}"></button></td>`;}
-      t += '</tr>';
+      h += `<tr><th class="v" scope="row"><bdi>${esc(f.name)}</bdi></th>`;
+      for(let d=1; d<=31; d++){const on=f.booked.includes(d); h += `<td><button type="button" class="cell ${on?'on':''}" data-v="${v}" data-d="${d}" aria-pressed="${on}" aria-label="${esc(f.name)}, ${d} ${C('month')}, ${on?t('blockedA'):t('freeA')}"></button></td>`;}
+      h += '</tr>';
     });
-    $('#fleet').innerHTML = t + '</tbody></table>';
-    $('#veh').innerHTML = fleet.map((f,v)=>`<button type="button" class="chip ${v===current?'on':''}" data-pick="${v}">${esc(f.name)}</button>`).join('');
+    $('#fleet').innerHTML = h + '</tbody></table>';
+    $('#veh').innerHTML = fleet.map((f,v)=>`<button type="button" class="chip ${v===current?'on':''}" data-pick="${v}" dir="ltr">${esc(f.name)}</button>`).join('');
     let m = '<span></span><span></span>';
-    for(let d=1; d<=31; d++){const on=fleet[current].booked.includes(d); m += `<button type="button" class="daybtn ${on?'on':''}" data-v="${current}" data-d="${d}" aria-pressed="${on}" aria-label="${d} juillet, ${on?'bloqué':'libre'}">${d}</button>`;}
+    for(let d=1; d<=31; d++){const on=fleet[current].booked.includes(d); m += `<button type="button" class="daybtn ${on?'on':''}" data-v="${current}" data-d="${d}" aria-pressed="${on}" aria-label="${d} ${C('month')}, ${on?t('blockedA'):t('freeA')}">${d}</button>`;}
     $('#mcal').innerHTML = m;
     document.querySelectorAll('[data-d]').forEach(b => b.onclick = () => toggle(Number(b.dataset.v), Number(b.dataset.d)));
     document.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => {current=Number(b.dataset.pick); draw();});
@@ -465,69 +624,69 @@ function planningBind(){
   draw();
 }
 
-function wizard(){
+const MODELS = {Hyundai:['Tucson','Accent','i10','Elantra','Creta'], Toyota:['Corolla','Yaris','Hilux','HiAce'], Kia:['Picanto','Sportage','Carnival'], Nissan:['Sunny','Sentra','Qashqai'], Mitsubishi:['Xpander','Attrage','Lancer'], Renault:['Symbol','Clio','Megane','Kangoo'], Dacia:['Logan','Sandero','Duster'], Peugeot:['208','301','3008','Partner']};
+const AUTO = {Tucson:['suv',5,1], Accent:['sedan',5,0], i10:['city',5,0], Elantra:['sedan',5,0], Creta:['suv',5,0], Corolla:['sedan',5,0], Yaris:['city',5,0], Hilux:['utility',5,1], HiAce:['utility',14,1], Picanto:['city',5,0], Sportage:['suv',5,0], Carnival:['seven',8,1], Sunny:['sedan',5,0], Sentra:['sedan',5,0], Qashqai:['suv',5,0], Xpander:['seven',7,0], Attrage:['sedan',5,0], Lancer:['sedan',5,0], Symbol:['sedan',5,0], Clio:['city',5,0], Megane:['sedan',5,1], Kangoo:['utility',5,1], Logan:['sedan',5,0], Sandero:['city',5,0], Duster:['suv',5,1], '208':['city',5,0], '301':['sedan',5,0], '3008':['suv',5,1], Partner:['utility',5,1]};
+let draft = {brand:'Hyundai', model:'Tucson', year:'2021'};
+let shots = 0;
+function wizardPage(){
   return proShell('ajout', `<div class="wizard">
-    <div><h1 style="font-size:24px;font-weight:700">Ajouter un véhicule</h1><p style="color:var(--muted);font-size:14px" id="w-n"></p></div>
+    <div><h1 style="font-size:24px;font-weight:700">${t('addCar')}</h1><p style="color:var(--muted);font-size:14px" id="w-n"></p></div>
     <div class="steps" id="w-bars"><span></span><span></span><span></span><span></span></div>
     <div id="w-body"></div>
-    <div class="wfoot"><button class="btn plain" type="button" id="w-back">Retour</button><button class="btn" type="button" id="w-next">Suivant</button></div>
+    <div class="wfoot"><button class="btn plain" type="button" id="w-back">${t('prev')}</button><button class="btn" type="button" id="w-next">${t('next')}</button></div>
   </div>`);
 }
 const sel = (label, opts, pick) => `<label class="field">${label}<select>${opts.map(o=>`<option ${o===pick?'selected':''}>${o}</option>`).join('')}</select></label>`;
 const chk = (label, on) => `<label class="check"><input type="checkbox" ${on?'checked':''}> ${label}</label>`;
-const MODELS = {Hyundai:['Tucson','Accent','i10','Elantra','Creta'], Renault:['Symbol','Clio','Megane','Kangoo'], Dacia:['Logan','Sandero','Duster'], Kia:['Picanto','Sportage','Carnival'], Peugeot:['208','301','3008','Partner'], Toyota:['Yaris','Corolla','Hilux']};
-const AUTO = {Tucson:['SUV',5,'Diesel'], Accent:['Berline',5,'Essence'], i10:['Citadine',5,'Essence'], Elantra:['Berline',5,'Essence'], Creta:['SUV',5,'Essence'], Symbol:['Berline',5,'Essence'], Clio:['Citadine',5,'Essence'], Megane:['Berline',5,'Diesel'], Kangoo:['Utilitaire',5,'Diesel'], Logan:['Berline',5,'Essence'], Sandero:['Citadine',5,'Essence'], Duster:['SUV',5,'Diesel'], Picanto:['Citadine',5,'Essence'], Sportage:['SUV',5,'Diesel'], Carnival:['7-8 places',8,'Diesel'], '208':['Citadine',5,'Essence'], '301':['Berline',5,'Essence'], '3008':['SUV',5,'Diesel'], Partner:['Utilitaire',5,'Diesel'], Yaris:['Citadine',5,'Essence'], Corolla:['Berline',5,'Essence'], Hilux:['Utilitaire',5,'Diesel']};
-let draft = {brand:'Hyundai', model:'Tucson', year:'2021'};
-let shots = 0;
 function wizardBind(){
   step = 1; shots = 0;
   const body = () => {
     if(step===1){
-      const a = AUTO[draft.model] || ['—','—','—'];
+      const a = AUTO[draft.model] || ['sedan',5,0];
       return `<div style="display:flex;flex-direction:column;gap:14px">
-        <h2 style="font-size:20px;font-weight:600">Quel véhicule ?</h2>
-        <div class="two"><label class="field">Marque<select id="w-brand">${Object.keys(MODELS).map(b=>`<option ${b===draft.brand?'selected':''}>${b}</option>`).join('')}</select></label>
-        <label class="field">Modèle<select id="w-model">${MODELS[draft.brand].map(m=>`<option ${m===draft.model?'selected':''}>${m}</option>`).join('')}</select></label></div>
-        <label class="field">Année<select id="w-year">${['2025','2024','2023','2022','2021','2020','2019'].map(y=>`<option ${y===draft.year?'selected':''}>${y}</option>`).join('')}</select></label>
-        <div class="auto"><p>Rempli automatiquement d'après le modèle — modifiable</p><div><span>Catégorie : <b>${a[0]}</b></span><span>Places : <b>${a[1]}</b></span><span>Carburant : <b>${a[2]}</b></span><span>Portes : <b>5</b></span></div></div>
-        ${sel('Boîte de vitesses',['Automatique','Manuelle'],'Automatique')}
-        <fieldset style="border:none;margin:0;padding:0"><legend class="field" style="margin-bottom:4px">Équipements</legend>${chk('Climatisation',true)}${chk('Bluetooth / CarPlay',true)}${chk('Caméra de recul',false)}${chk('GPS',false)}</fieldset></div>`;
+        <h2 style="font-size:20px;font-weight:600">${t('w1')}</h2>
+        <div class="two"><label class="field">${t('brand')}<select id="w-brand" dir="ltr">${Object.keys(MODELS).map(b=>`<option ${b===draft.brand?'selected':''}>${b}</option>`).join('')}</select></label>
+        <label class="field">${t('model')}<select id="w-model" dir="ltr">${MODELS[draft.brand].map(m=>`<option ${m===draft.model?'selected':''}>${m}</option>`).join('')}</select></label></div>
+        <label class="field">${t('year')}<select id="w-year">${['2025','2024','2023','2022','2021','2020','2019'].map(y=>`<option ${y===draft.year?'selected':''}>${y}</option>`).join('')}</select></label>
+        <div class="auto"><p>${t('autoFill')}</p><div><span>${t('category')} : <b>${t('t_'+a[0])}</b></span><span>${t('seatsT')} : <b>${a[1]}</b></span><span>${t('fuel')} : <b>${a[2]?t('diesel'):t('petrol')}</b></span><span>${t('doors')} : <b>${a[0]==='utility'&&a[1]>8?4:5}</b></span></div></div>
+        ${sel(t('gearT'),[t('auto'),t('manual')],t('auto'))}
+        <fieldset style="border:none;margin:0;padding:0"><legend class="field" style="margin-bottom:4px">${t('equip')}</legend>${chk(t('ac'),true)}${chk(t('bt'),true)}${chk(t('cam'),false)}${chk(t('gps'),false)}</fieldset></div>`;
     }
     if(step===2){
-      const names=['Face','Côté','Arrière','Intérieur','Sièges','Coffre'];
+      const names = T.slots[I()];
       return `<div style="display:flex;flex-direction:column;gap:14px">
-        <h2 style="font-size:20px;font-weight:600">Photos</h2>
-        <p style="color:var(--muted);font-size:14px">6 photos conseillées. Elles sont compressées automatiquement pour les connexions lentes.</p>
-        <button class="btn teal" type="button" id="w-shot">Prendre une photo</button>
+        <h2 style="font-size:20px;font-weight:600">${t('w2')}</h2>
+        <p style="color:var(--muted);font-size:14px">${t('w2P')}</p>
+        <button class="btn teal" type="button" id="w-shot">${t('shot')}</button>
         <div class="slots">${names.map((n,i)=>`<button type="button" class="slot ${i<shots?'done':''}" data-slot="${i}">${n}${i<shots?' ✓':''}</button>`).join('')}</div></div>`;
     }
     if(step===3){
       return `<div style="display:flex;flex-direction:column;gap:14px">
-        <h2 style="font-size:20px;font-weight:600">Prix et conditions</h2>
-        <label class="field">Prix par jour (DA)<input type="number" inputmode="numeric" placeholder="Votre prix"></label>
-        <div class="two">${sel('Durée minimale',['1 jour','2 jours','3 jours','7 jours'],'2 jours')}
-        <label class="field">Caution (DA)<input type="number" inputmode="numeric" placeholder="Montant"></label>
-        ${sel('Kilométrage',['Illimité','200 km / jour','300 km / jour'],'Illimité')}
-        ${sel('Âge minimum',['21 ans','23 ans','25 ans'],'25 ans')}
-        ${sel('Permis depuis',['1 an','2 ans','3 ans'],'3 ans')}
-        ${sel('Chauffeur',['Sans chauffeur','Avec chauffeur','Au choix du client'],'Sans chauffeur')}</div>
-        ${sel('Carburant',['Rendu au même niveau','Plein contre plein'],'Rendu au même niveau')}
-        ${sel('Annulation',["Gratuite jusqu'à 48 h avant","Gratuite jusqu'à 7 jours avant",'Non remboursable'],"Gratuite jusqu'à 48 h avant")}
-        <fieldset style="border:none;margin:0;padding:0"><legend class="field" style="margin-bottom:4px">Services</legend>${chk("Livraison à l'aéroport",true)}${chk('Livraison à domicile',false)}${chk('Siège bébé',false)}</fieldset></div>`;
+        <h2 style="font-size:20px;font-weight:600">${t('w3')}</h2>
+        <label class="field">${t('ppd',{c:C('cur')})}<input type="number" inputmode="numeric" placeholder="${t('yourPrice')}"></label>
+        <div class="two">${sel(t('minDur'),[days(1),days(2),days(3),days(7)],days(2))}
+        <label class="field">${t('depositC',{c:C('cur')})}<input type="number" inputmode="numeric" placeholder="${t('amount')}"></label>
+        ${sel(t('mileage'),[t('unlimited'),t('km200'),t('km300')],t('unlimited'))}
+        ${sel(t('minAge'),[ageY(21),ageY(23),ageY(25)],ageY(25))}
+        ${sel(t('licSince'),[years(1),years(2),years(3)],years(3))}
+        ${sel(t('driverT'),[t('withoutDriver'),t('withDriver'),t('custChoice')],t('withoutDriver'))}</div>
+        ${sel(t('fuel'),[t('sameLevel'),t('fullFull')],t('sameLevel'))}
+        ${sel(t('cancel'),[t('c48'),t('c7'),t('cNo')],t('c48'))}
+        <fieldset style="border:none;margin:0;padding:0"><legend class="field" style="margin-bottom:4px">${t('servicesT')}</legend>${chk(t('fAirport'),true)}${chk(t('home'),false)}${chk(t('babySeat'),false)}</fieldset></div>`;
     }
     return `<div style="display:flex;flex-direction:column;gap:14px">
-      <h2 style="font-size:20px;font-weight:600">Lieu et publication</h2>
-      ${sel('Ville',['Alger'],'Alger')}
-      <label class="field">Quartier de remise<input type="text" placeholder="Ex. Hydra"></label>
-      <div class="card" style="padding:14px;font-size:14px;display:flex;flex-direction:column;gap:4px"><b style="font-size:15px">Récapitulatif</b><span>${draft.brand} ${draft.model} ${draft.year}</span><span>${shots} photo${shots>1?'s':''} · 2 jours minimum · km illimité</span></div>
-      <label class="check" style="align-items:flex-start"><input type="checkbox" id="w-engage" checked style="margin-top:3px"> Je m'engage à utiliser le contrat de location SafaRaha pour chaque location de ce véhicule.</label></div>`;
+      <h2 style="font-size:20px;font-weight:600">${t('w4')}</h2>
+      ${sel(t('city'),[C('city')],C('city'))}
+      <label class="field">${t('district')}<input type="text" placeholder="${C('district')}"></label>
+      <div class="card" style="padding:14px;font-size:14px;display:flex;flex-direction:column;gap:4px"><b style="font-size:15px">${t('recap')}</b><span><bdi>${draft.brand} ${draft.model} ${draft.year}</bdi></span><span>${t('recapL',{n:shots})}</span></div>
+      <label class="check" style="align-items:flex-start"><input type="checkbox" id="w-engage" checked style="margin-top:3px"> ${t('engage')}</label></div>`;
   };
   const draw = () => {
-    $('#w-n').textContent = `Étape ${step} sur 4`;
+    $('#w-n').textContent = t('stepN',{s:step});
     document.querySelectorAll('#w-bars span').forEach((s,i)=>s.classList.toggle('on', i<step));
     $('#w-body').innerHTML = body();
     $('#w-back').style.visibility = step===1?'hidden':'visible';
-    $('#w-next').textContent = step===4?'Publier l’annonce':'Suivant';
+    $('#w-next').textContent = step===4?t('publish'):t('next');
     if(step===1){
       $('#w-brand').onchange = e => {draft.brand=e.target.value; draft.model=MODELS[draft.brand][0]; draw();};
       $('#w-model').onchange = e => {draft.model=e.target.value; draw();};
@@ -542,28 +701,32 @@ function wizardBind(){
   $('#w-back').onclick = () => {step=Math.max(1,step-1); draw();};
   $('#w-next').onclick = () => {
     if(step<4){step++; draw(); window.scrollTo(0,0); return;}
-    if(!$('#w-engage').checked){toast('L’engagement à utiliser le contrat SafaRaha est obligatoire pour publier.'); return;}
-    fleet.push({name:`${draft.brand} ${draft.model} ${draft.year}`, booked:[]});
-    current = fleet.length-1;
+    if(!$('#w-engage').checked){toast(t('toastEngage')); return;}
+    FLEET[country].push({name:`${draft.brand} ${draft.model} ${draft.year}`, booked:[]});
+    current = FLEET[country].length-1;
     location.hash = '#/loueur';
-    setTimeout(()=>toast('Annonce publiée. Elle apparaît dans votre planning.'),100);
+    setTimeout(()=>toast(t('toastPub')),100);
   };
   draw();
 }
 
-/* ---------- Navigation ---------- */
+/* =========================================================
+   Navigation
+   ========================================================= */
 function route(){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==='ar' ? 'rtl' : 'ltr';
+  header();
   const h = location.hash.replace(/^#\/?/,'');
   const [page, arg] = h.split('/');
   const app = $('#app');
   $('#layer').innerHTML=''; const v=$('#veil'); if(v) v.remove();
-  $('#nav-louer').classList.toggle('on', page==='resultats');
-  $('#nav-loueur').classList.toggle('on', page==='loueur');
-  if(page==='resultats'){app.innerHTML=results(); resultsBind(); document.title='Résultats — SafaRaha';}
-  else if(page==='fiche'){app.innerHTML=detail(arg); detailBind(arg); document.title='Fiche véhicule — SafaRaha';}
-  else if(page==='loueur' && arg==='ajout'){app.innerHTML=wizard(); wizardBind(); document.title='Ajouter un véhicule — SafaRaha';}
-  else if(page==='loueur'){app.innerHTML=planning(); planningBind(); document.title='Espace loueur — SafaRaha';}
-  else {app.innerHTML=home(); homeBind(); document.title='SafaRaha — Louez une voiture en toute sérénité';}
+  if(page==='resultats'){app.innerHTML=resultsPage(); resultsBind();}
+  else if(page==='fiche'){app.innerHTML=detailPage(arg); detailBind(arg);}
+  else if(page==='loueur' && arg==='ajout'){app.innerHTML=wizardPage(); wizardBind();}
+  else if(page==='loueur'){app.innerHTML=planningPage(); planningBind();}
+  else {app.innerHTML=homePage(); homeBind();}
+  document.title = lang==='ar' ? 'صفا راحة — استأجر سيارتك براحة بال' : 'SafaRaha — ' + t('heroT');
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange', route);
